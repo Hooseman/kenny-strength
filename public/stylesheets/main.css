@@ -1,0 +1,105 @@
+/* header css */
+
+.header-outer-shell {
+    width: 100vw;
+    height: 80px;
+    z-index: 7;
+    position: absolute;
+    background-color: black;
+}
+
+.header-inner-text {
+    color: white;
+    font-size: 36px;
+    top: 10px;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+
+
+
+/* login css */
+
+.login-main-container{
+    width: 575px;
+    height: 466px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.login-signin-container {
+    width: 100%;
+    height: 65px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-signin-text {
+    font-size: 30px;
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+.login-signin-admin-text {
+    margin-right: 20px;
+    padding-top: 35px;
+}
+
+.login-form-username-container {
+    margin-left: 20px;
+    margin-top: 20px;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    margin-right: 20px;
+    height: 85px;
+}
+
+#username-input {
+    padding-top: 10px;
+}
+
+.login-form-username-text {
+
+}
+
+.submit-login {
+    width: 94%;
+    height: 80px;
+    background-color: blue;
+    margin: auto;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#button-text {
+    color: white;
+    font-size: 30px;
+    padding-top: 12px;
+}
+
+.bottom-newuser {
+    width: 100%;
+    text-align: right;
+    padding-right: 16px;
+    margin-top: 25px;
+}
+
+/* footer css */
+
+.footer-outer-shell {
+    width: 100vw;
+    height: 60px;
+    z-index: 7;
+    position: relative;
+    background-color: black;
+    top: 963px;
+}

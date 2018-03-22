@@ -1,0 +1,58 @@
+<div class="newform-user-outer-shell">
+    <div class="newform-user-inner-top-shell">
+        <div class="newform-user-inner-top-shell-text-holder">
+            <p id="newform-user-inner-top-text-left">NEW USER FORM</p> 
+            <!-- <div class="closing-the-form">
+                <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    <path d="M0 0h24v24H0z" fill="none" />
+                </svg>
+            </div> -->
+        </div>
+    </div>
+<form>
+    <div class="newform-user-inner-bottom-shell">
+        <div class="newform-user-inner-bottom-left-shell">
+            <input class="newform-user-inner-bottom-left-text" id="new-user" type="text" ng-model="new_user.first_name" placeholder="First name" data-name="first_name" required>
+            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="new_user.last_name" placeholder="Last name" data-name="last_name" required>
+            <input class="newform-user-inner-bottom-left-text" type="email" ng-model="new_user.email" placeholder="Email">
+            <input class="newform-user-inner-bottom-left-text" type="password" ng-model="new_user.password" placeholder="Password">
+            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="new_user.date_of_birth" placeholder="DOB">
+            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="new_user.phone_number" placeholder="Phone #">
+        </div>
+
+            <div class="verticle-line"></div>
+
+        <div class="newform-user-inner-bottom-right-shell">
+            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="new_user.address" placeholder="Address">
+            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="new_user.city" placeholder="City">
+            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="new_user.zip" placeholder="Zip">
+            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="new_user.comments" placeholder="Info kg strength should know (optional)">
+            <div class="newform-user-inner-bottom-right-text-privacy">
+                <p>KG Strength Training Employees respect your
+                    <br> privacy and will not share or view your
+                    <br> information with anyone!</p>
+        </div>
+
+            <div class="newform-user-inner-very-bottom-shell">
+                <div>
+                    <svg fill="#FF0000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                    </svg>
+                </div>
+                <p id="waiver-text">
+                    <strong>PLEASE SIGN WAIVER</strong> (required)</p>
+                <button class="waiver-button">
+                    <svg fill="#FFFFFF" height="24" viewBox="0 0 24 15" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+    </div>
+            <button class="button-container" type="submit" ng-click="register(new_user)">create user</button>
+    </form>
+</div>

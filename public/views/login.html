@@ -1,0 +1,29 @@
+<!-- login page -->
+
+<div class="login-main-container">
+    <div class="login-signin-container">
+        <div class="login-signin-text">
+            <strong>Sign In</strong>
+        </div>
+        <div class="login-signin-admin-text" ui-sref="adminlogin">Admin? Click here</div>
+    </div>
+
+    <form>
+        <div class="login-form-username-container">
+            <div class="login-form-username-text">Username</div>
+            <input id="username-input" type="text" ng-model="user.username" placeholder="Username">
+        </div>
+
+        <div class="login-form-username-container">
+            <div class="login-form-username-text">Password</div>
+            <input id="username-input" type="password" ng-model="user.password" placeholder="Password">
+        </div>
+
+        <div class="submit-login">
+            <button id="button-text" type="submit" ng-click="login(user)"><strong>Log In</strong></button>
+        </div>
+    </form>
+    <div class="bottom-newuser">
+        <div ui-sref="newuser">New? Press here</div>
+    </div>
+</div>

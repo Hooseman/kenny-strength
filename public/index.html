@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="kg-App">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KG Strength</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./stylesheets/main.css">
+    <link rel="stylesheet" href="./stylesheets/newform.css">
+    <link rel="stylesheet" href="./stylesheets/admin.css">
+   
+</head>
+<body ng-controller="loginCtrl">
+    <header-template></header-template>
+    <image-template></image-template>
+    <footer-template></footer-template>
+    <ui-view autoscroll='true'></ui-view>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <script src="./javascripts/app.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="./javascripts/controllers/mainCtrl.js"></script>
+    <script src="./javascripts/controllers/adminCtrl.js"></script>
+    <script src="./javascripts/controllers/superadminCtrl.js"></script>
+    <script src="./javascripts/controllers/loginCtrl.js"></script>
+    <script src="./javascripts/controllers/adminLoginCtrl.js"></script>
+    <script src="./javascripts/services/mainService.js"></script>
+    <script src="./javascripts/services/loginService.js"></script>
+    <script src="./javascripts/services/adminService.js"></script>
+    <script src="./javascripts/services/superadminService.js"></script>
+    <script src="./javascripts/directives/image.js"></script>
+    <script src="./javascripts/directives/header.js"></script>
+    <script src="./javascripts/directives/footer.js"></script>
+</body>
+
+</html>
