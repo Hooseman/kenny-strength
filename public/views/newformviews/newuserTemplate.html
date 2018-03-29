@@ -13,21 +13,21 @@
 <form>
     <div class="newform-user-inner-bottom-shell">
         <div class="newform-user-inner-bottom-left-shell">
-            <input class="newform-user-inner-bottom-left-text" id="new-user" type="text" ng-model="new_user.first_name" placeholder="First name" data-name="first_name" required>
-            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="new_user.last_name" placeholder="Last name" data-name="last_name" required>
-            <input class="newform-user-inner-bottom-left-text" type="email" ng-model="new_user.email" placeholder="Email">
-            <input class="newform-user-inner-bottom-left-text" type="password" ng-model="new_user.password" placeholder="Password">
-            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="new_user.date_of_birth" placeholder="DOB">
-            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="new_user.phone_number" placeholder="Phone #">
+            <input class="newform-user-inner-bottom-left-text" id="new-user" type="text" ng-model="user.firstname" placeholder="First name" data-name="firstname" required>
+            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="user.lastname" placeholder="Last name" data-name="lastname" required>
+            <input class="newform-user-inner-bottom-left-text" type="email" ng-model="user.email" placeholder="Email">
+            <input class="newform-user-inner-bottom-left-text" type="password" ng-model="user.password" placeholder="Password">
+            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="user.birth_date" placeholder="DOB">
+            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="user.phone" placeholder="Phone #">
         </div>
 
             <div class="verticle-line"></div>
 
         <div class="newform-user-inner-bottom-right-shell">
-            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="new_user.address" placeholder="Address">
-            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="new_user.city" placeholder="City">
-            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="new_user.zip" placeholder="Zip">
-            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="new_user.comments" placeholder="Info kg strength should know (optional)">
+            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.clientaddress" placeholder="Address">
+            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.city" placeholder="City">
+            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.zip" placeholder="Zip">
+            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.info" placeholder="Info kg strength should know (optional)">
             <div class="newform-user-inner-bottom-right-text-privacy">
                 <p>KG Strength Training Employees respect your
                     <br> privacy and will not share or view your
@@ -53,6 +53,6 @@
 
         </div>
     </div>
-            <button class="button-container" type="submit" ng-click="register(new_user)">create user</button>
+            <button class="button-container" type="submit" ng-click="registerUser(user)">create user</button>
     </form>
 </div>

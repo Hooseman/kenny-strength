@@ -4,6 +4,10 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
+const config = require('./config.js');
+// const passport = require('./passport');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 //dotenv helps when going to production//
 require('dotenv').config();
@@ -14,91 +18,113 @@ const app = module.exports = express();
 //Create port
 const port = process.env.PORT || 3000;
 
+//===REQUIRE CONTROLLERS(BELOW APP.SET)========
+const userCtrl = require('./backendCtrls/userCtrl');
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.static(__dirname + './public'));
+app.use(express.static(__dirname + '/public'));
 
 //Url string to connect to database
-CONNECTION_STRING : 'postgres://postgres:@localhost/justonperkins'
+CONNECTION_STRING = config.CONNECTION_STRING;
 
 //Initializes massive connection//
-let db = massive(process.env.CONNECTION_STRING).then(dbObject => {
-    app.set('db', dbObject);
-}).catch(err => console.log(err));
+// const massiveServer = massive(process.env.CONNECTION_STRING).then(db => app.set('db', db))
+massive(CONNECTION_STRING).then(db => {
+  app.set('db', db)
+})
+// app.set('db', massiveServer)
 
-//PASSPORT SETUP//
-const passport = require('passport');
+// //PASSPORT SETUP//
+// const passport = require('./passport');
+const bcrypt = require('bcryptjs');
+
+//===POLICIES===========================
+const isAuthed = (req, res, next) => {
+  if (!req.isAuthenticated()) return res.status(401).send();
+  return next();
+};
+
+//===SESSION AND PASSPORT=====================
+app.use(session({
+  secret: config.secret,
+  saveUninitialized: false,
+  resave: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/success', (req, res) => res.send("Welcome " + req.query.username + '!!'));
-app.get('/error', (req, res) => res.send("error logging in"));
 
-passport.serializeUser(function(user, cb) {
-    cb(null, user.id);
-});
-
-passport.deserializeUser(function(id, cb) {
-    User.findById(id, function(err, user) {
-        cb(err, user);
-    });
-});
-
-/*PASSPORT LOCAL AUTHENTICATION*/
-const LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(
-    function(first_name, password, done) {
-        db.clients.findOne({
-          first_name: first_name
-        }, function(err, user) {
-          if (err) {
-            return done(err);
-          }
-  
-          if (!user) {
-            return done(null, false);
-          }
-  
-          if (user.password != password) {
-            return done(null, false);
-          }
-          return done(null, user);
-        });
+passport.use(new LocalStrategy({
+  usernameField: 'username',
+  passwordField: 'password'
+}, function (username, password, done) {
+  app.get('db').get_user([username]).then(result => {
+    const user = result[0];
+    console.log(user);
+    //VERIFY USERNAME EXISTS
+    if (!user) {
+      return done(null, 'Unauthorized')
+    } else {
+      console.log("found username")
     }
-));
+    //VERIFY PASSWORD MATCHES
+    const validPassword = user.password;
+    console.log(validPassword);
+    if (!validPassword) {
+      return done(null, 'Unauthorized')
+    } else {
+      console.log("found username")
+    }
+    //USER IS VERIFIED AND THEIR ID IS RETURNED
+    return done(null, user.id)
+  })
+}))
 
-app.post('/',
-  passport.authenticate('local', { failureRedirect: '/error' }),
-  function(req, res) {
-    res.redirect('/success?username='+req.user.username);
-  });
+passport.serializeUser((id, done) => {
+  return done(null, id)
+});
+
+passport.deserializeUser((id, done) => {
+  if (id === "Unauthorized") {
+    return done(null, 'Unauthorized');
+  }
+
+  app.get('db').user_search_id([id]).then(result => {
+    const user = result[0];
+    return done(null, user);
+  })
+});
+
+//===PASSPORT ENDPOINTS===================
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/me'
+}))
+
+app.get('/logout', (req, res, next) => {
+  req.logout();
+  return res.status(200).send('logged out');
+});
+
+//===USER ENDPOINTS=========================
+app.post('/register', userCtrl.register);
+app.get('/me', isAuthed, userCtrl.me);
+
+// app.get('/me', (req, res) => {
+//   if (req.user) {
+//     res.status(200).send(req.user);
+//   } else {
+//     res.status(401).send('Not Logged In');
+//   }
+// })
 
 ///ROUTES///
-const userCtrl = require('./backendCtrls/userCtrl');
 
-app.get('/test', function(req,res,next) {
-    res.send('test worked');
-});
-
-app.get('/get-user/:user_id', function(req,res,next) {
-    req.app.get('db').get_user().then(user => {
-        res.status(200).send(user);
-    })
-});
-
-// app.get('/get-user/:user_id', userCtrl.getUser);
-
-app.get('/get-all', (req, res) => {
-    req.app.get('db').get_clients().then(clients => {
-        res.status(200).send(clients)
-    });
-});
+// endpoint tests
+app.get('/test', userCtrl.test);
+app.get('/get-user/:id', userCtrl.getUser);
+app.post('/create', userCtrl.create);
+app.get('/get-all-creds', userCtrl.getAllCreds);
 
 ///Listen on app///
 app.listen(port, () => console.log(`listening on port ${port}`));
-
-module.exports = {
-    db: db
-}

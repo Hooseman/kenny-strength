@@ -1,3 +1,4 @@
 module.exports = {
-    sessionSecret:'someGoodCookies'
+    CONNECTION_STRING:'postgres://postgres:@localhost/justonperkins',
+    secret:'keyboardcat'
 }

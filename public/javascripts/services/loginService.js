@@ -1,78 +1,48 @@
-angular.module('kg-App').service('loginService', function($http){
+angular.module('kg-App').service('loginService', function ($http) {
 
-    // this.register = (new_user) => {
-    //     return $http({
-    //       method: 'POST',
-    //       url: '/register',
-    //       data: new_user
-    //     }).then((response) => {
-    //       console.log("loginService: ", response);
-    //       return response;
-    //     });
-    //   };
-    
-      this.login = function(user) {
-        return $http({
-          method: 'POST',
-          url: '/login',
-          data: user
-        }).then(function(response) {
-          return response;
-        });
-      };
-    
-      // this.logout = function() {
-      //   return $http({
-      //     method: 'GET',
-      //     url: '/logout'
-      //   }).then(function(response) {
-      //     return response;
-      //   });
-      // };
-    
-      // this.getCurrentUser = function() {
-      //   return $http({
-      //     method: 'GET',
-      //     url: '/me'
-      //   })
-      // };
-    
-      // this.registerUser = function(user) {
-      //   return $http({
-      //     method: 'POST',
-      //     url: '/register',
-      //     data: user
-      //   }).then(function(response) {
-      //     return response;
-      //   });
-      // };
-    
-      // this.editUser = function(id, user) {
-      //   return $http({
-      //     method: 'PUT',
-      //     url: "/user/" + id,
-      //     data: user
-      //   }).then(function(response) {
-      //     return response;
-      //   });
-      // };
-    
-      // //USERSERVICE//
-      // this.getUser = function() {
-      //   return $http({
-      //     method: 'GET',
-      //     url: '/user'
-      //   }).then(function(response) {
-      //     return response;
-      //   });
-      // };
-    
-      // this.getUserById = function(id) {
-      //   return $http({
-      //     method: 'GET',
-      //     url: '/user?_id=' + id
-      //   }).then(function(response) {
-      //     return response;
-      //   });
-      // };
+  this.registerUser = (new_user) => {
+    return $http({
+      method: 'POST',
+      url: '/register',
+      data: user
+    }).then((response) => {
+      return response;
+    });
+  };
+
+  this.login = function(username, password) {
+    return $http.post('/login', {username: username, password: password})
+    .then(function success(response) {
+        return response.data;
+    }, function err(err) {
+        return err.data;
+    });
+};
+
+this.getUser = function() {
+    return $http.get('/me')
+    .then(function(response) {
+        return response.data;
+    });
+};
+
+this.logout = function() {
+    return $http.get('/logout')
+    .then(function(response) {
+        return response.data;
+    });
+};
+
+// this.getUserData = function(id) {
+//   return $http.get('/getUser/' + id).then(function(response) {
+
+//       return response.data;
+//   })
+// }
+
+  // this.getAll = function (){
+  //   return $http.get('/get-all').then(function(response){
+  //     return response.data;
+  //   })
+  // }
 });

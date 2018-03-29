@@ -8,22 +8,24 @@
         <div class="login-signin-admin-text" ui-sref="adminlogin">Admin? Click here</div>
     </div>
 
-    <form>
+    <form ng-submit='login(username, password)'>
         <div class="login-form-username-container">
             <div class="login-form-username-text">Username</div>
-            <input id="username-input" type="text" ng-model="user.username" placeholder="Username">
+            <input id="username-input" type="text" ng-model="username" placeholder="Firstname" required>
         </div>
 
         <div class="login-form-username-container">
             <div class="login-form-username-text">Password</div>
-            <input id="username-input" type="password" ng-model="user.password" placeholder="Password">
+            <input id="username-input" type="password" ng-model="password" placeholder="Password" required>
         </div>
 
         <div class="submit-login">
-            <button id="button-text" type="submit" ng-click="login(user)"><strong>Log In</strong></button>
+            <button id="button-text" type="submit"><strong>Log In</strong></button>
         </div>
     </form>
+
     <div class="bottom-newuser">
         <div ui-sref="newuser">New? Press here</div>
     </div>
+
 </div>

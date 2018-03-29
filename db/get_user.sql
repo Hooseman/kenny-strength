@@ -1,2 +1,3 @@
-SELECT * FROM clients
-WHERE id = id;
+SELECT *
+FROM clients
+WHERE username = $1;
