@@ -1,9 +1,7 @@
-DROP TABLE IF EXISTS clients, client_creds;
-DROP INDEX IF EXISTS clients_index;
+DROP TABLE IF EXISTS clients, client_creds, admins;
 
 CREATE TABLE clients (
 id SERIAL PRIMARY KEY,
-user_id INTEGER,
 username VARCHAR(200),
 lastname VARCHAR(200),
 email VARCHAR(200),
@@ -13,17 +11,22 @@ birth_date VARCHAR(200),
 age INTEGER,
 sex VARCHAR,
 clientaddress VARCHAR(200),
-city VARCHAR,
+city VARCHAR(200),
 zip BIGINT,
 info VARCHAR(500)
 );
 
-CREATE UNIQUE INDEX clients_index ON clients(user_id);
 
 CREATE TABLE client_creds (
 id SERIAL PRIMARY KEY,
 username VARCHAR(200),
 password VARCHAR(200)
+);
+
+CREATE TABLE admins (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR,
+    lastname VARCHAR
 );
 
 
@@ -32,4 +35,8 @@ INSERT INTO clients (username,lastname,email,phone,password,birth_date,age,sex,c
 
 INSERT INTO client_creds (username,password) VALUES
 ('pills','berry');
+
+INSERT INTO admins (username,lastname) VALUES
+('Kenny','Golladay'),
+('Adam', 'Magistri');
 

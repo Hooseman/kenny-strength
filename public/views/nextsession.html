@@ -1,4 +1,42 @@
+<!-- nextsession -->
+<div class="next-session-outer-container">
+    <div class="next-session-container-top">
+        <p id="next-session-container-top">
+            <strong>Next session</strong>
+        </p>
+    </div>
 
-<div>
-<h1>You made it</h1>
+    <form ng-submit="logout()">
+        <div class="trainer-select">
+            <p>Trainer</p>
+            <select>
+                    <option ng-repeat="x in trainers">{{x.username}} {{x.lastname}}</option>
+                    </select>
+        </div>
+        <div class="date-picker-container">
+            <p>Please pick a date / time / and session type</p>
+            <div class="date-picker-selection">
+                <div>
+                    <p>Select date</p>
+                </div>
+                <p>/</p>
+                <div>
+                    <p>Select time</p>
+                </div>
+                <p>/</p>
+                <div>
+                        <select ng-model="register.sessionId" ng-options="session.id as session.name for session in register.sessions"></select>
+                </div>
+            </div>
+        </div>
+        <div class="payment-container">
+            <p>How will you pay for this session?</p>
+            <div>
+                <p>Choose your option</p>
+            </div>
+        </div>
+        <div class="logout-container">
+            <button class="logout-text" type="submit"><strong>WELCOME {{username}}</strong></button>
+        </div>
+    </form>
 </div>

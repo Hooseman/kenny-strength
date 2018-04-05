@@ -61,20 +61,18 @@ passport.use(new LocalStrategy({
 }, function (username, password, done) {
   app.get('db').get_user([username]).then(result => {
     const user = result[0];
-    console.log(user);
     //VERIFY USERNAME EXISTS
     if (!user) {
       return done(null, 'Unauthorized')
     } else {
-      console.log("found username")
+      // console.log("found username")
     }
     //VERIFY PASSWORD MATCHES
     const validPassword = user.password;
-    console.log(validPassword);
     if (!validPassword) {
       return done(null, 'Unauthorized')
     } else {
-      console.log("found username")
+      // console.log("found username")
     }
     //USER IS VERIFIED AND THEIR ID IS RETURNED
     return done(null, user.id)
@@ -109,14 +107,8 @@ app.get('/logout', (req, res, next) => {
 //===USER ENDPOINTS=========================
 app.post('/register', userCtrl.register);
 app.get('/me', isAuthed, userCtrl.me);
+app.get('/trainers', userCtrl.getTrainers);
 
-// app.get('/me', (req, res) => {
-//   if (req.user) {
-//     res.status(200).send(req.user);
-//   } else {
-//     res.status(401).send('Not Logged In');
-//   }
-// })
 
 ///ROUTES///
 

@@ -1,6 +1,6 @@
 angular.module('kg-App').service('loginService', function ($http) {
 
-  this.registerUser = (new_user) => {
+  this.registerUser = (user) => {
     return $http({
       method: 'POST',
       url: '/register',
@@ -9,6 +9,10 @@ angular.module('kg-App').service('loginService', function ($http) {
       return response;
     });
   };
+
+//   this.registerUser = (user) => {
+//     return $http.post(`/register/${username}/${lastname}/${email}/${phone}/${password}/${birth_date}/${age}/${sex}/${clientaddress}/${city}/${zip}/${info}`)
+// }
 
   this.login = function(username, password) {
     return $http.post('/login', {username: username, password: password})
@@ -33,16 +37,10 @@ this.logout = function() {
     });
 };
 
-// this.getUserData = function(id) {
-//   return $http.get('/getUser/' + id).then(function(response) {
+this.trainers = function (){
+    return $http.get('/trainers').then(function(response){
+      return response.data;
+    })
+  }
 
-//       return response.data;
-//   })
-// }
-
-  // this.getAll = function (){
-  //   return $http.get('/get-all').then(function(response){
-  //     return response.data;
-  //   })
-  // }
 });

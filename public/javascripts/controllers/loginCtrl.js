@@ -1,14 +1,13 @@
 angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stateParams, loginService) {
 
-
-  $scope.registerUser = (new_user) => {
-    let newUser = $scope.new_user;
-    let firstName = $("[data-name='firstname']").val();
+  $scope.registerUser = (user) => {
+    let newUser = $scope.user;
+    let firstName = $("[data-name='username']").val();
     let lastName = $("[data-name='lastname']").val();
     if (!firstName || !lastName) {
       return;
     }
-    loginService.registerUser(new_user).then((response) => {
+    loginService.registerUser(user).then((response) => {
       if (!response.data) {
         console.warn("Unable to create new user");
       } else {
@@ -33,17 +32,30 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
       });
   };
 
-  $scope.logout = loginService.logout;
+  $scope.logout = () => {
+    loginService.logout().then((response) => {
+      console.log("Logged Out");
+      $state.go('login');
+    })
+  }
+
+  loginService.trainers().then(function(response){
+    $scope.trainers = response;
+  });
+
+  $scope.register = {};
+  $scope.register.sessionId = "1";
+
+  $scope.register.sessions = [{
+    id: "1",
+    name: "Pick a session"
+  }, {
+    id: "2",
+    name: "30 Minute"
+  }, {
+    id: "3",
+    name: "1 Hour"
+  }];
 });
 
-// mainService.getUserData(response)
-//   .then(function (response) {
-//     $scope.userData = response[0];
-//     $scope.userId = response[0]['fb_id'];
-//     console.log('userId: ', $scope.userId)
-//   })
 
-
-// loginService.getAll().then(function(response){
-//   $scope.shotguns=response;
-// })
