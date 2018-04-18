@@ -5,12 +5,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
 const config = require('./config.js');
-// const passport = require('./passport');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 //dotenv helps when going to production//
 require('dotenv').config();
+
+const charge = require('./charge');
 
 //Initialize express./
 const app = module.exports = express();
@@ -29,14 +30,11 @@ app.use(express.static(__dirname + '/public'));
 CONNECTION_STRING = config.CONNECTION_STRING;
 
 //Initializes massive connection//
-// const massiveServer = massive(process.env.CONNECTION_STRING).then(db => app.set('db', db))
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
 })
-// app.set('db', massiveServer)
 
 // //PASSPORT SETUP//
-// const passport = require('./passport');
 const bcrypt = require('bcryptjs');
 
 //===POLICIES===========================
@@ -65,10 +63,10 @@ passport.use(new LocalStrategy({
     if (!user) {
       return done(null, 'Unauthorized')
     } else {
-      // console.log("found username")
+      console.log("found username")
     }
     //VERIFY PASSWORD MATCHES
-    const validPassword = user.password;
+    const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
       return done(null, 'Unauthorized')
     } else {
@@ -90,11 +88,13 @@ passport.deserializeUser((id, done) => {
 
   app.get('db').user_search_id([id]).then(result => {
     const user = result[0];
+    console.log();
     return done(null, user);
   })
 });
 
 //===PASSPORT ENDPOINTS===================
+
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/me'
 }))
@@ -106,17 +106,18 @@ app.get('/logout', (req, res, next) => {
 
 //===USER ENDPOINTS=========================
 app.post('/register', userCtrl.register);
+app.post('/register-session', userCtrl.registerSession);
 app.get('/me', isAuthed, userCtrl.me);
 app.get('/trainers', userCtrl.getTrainers);
+app.get('/user-info/:id', userCtrl.info);
 
-
-///ROUTES///
 
 // endpoint tests
 app.get('/test', userCtrl.test);
 app.get('/get-user/:id', userCtrl.getUser);
 app.post('/create', userCtrl.create);
 app.get('/get-all-creds', userCtrl.getAllCreds);
+
 
 ///Listen on app///
 app.listen(port, () => console.log(`listening on port ${port}`));

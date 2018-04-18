@@ -1,6 +1,6 @@
 .next-session-outer-container {
     width: 575px;
-    height: 466px;
+    height: 430px;
     margin: auto;
     position: absolute;
     top: 0;
@@ -28,6 +28,7 @@
     padding-top: 20px;
     border-bottom: solid;
     border-bottom-width: thin;
+    padding-bottom: 20px;
 }
 
 .app {
@@ -47,26 +48,36 @@
 
 .date-picker-selection {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .payment-container {
     margin-left: 20px;
     margin-right: 20px;
-    padding-top: 20px;
+    padding-top: 28px;
 }
 
 .logout-container {
     margin-left: 20px;
     margin-right: 20px;
-    padding-top: 20px;
-    width: 93%;
+    padding-top: 15px;
+    width: 537px;
     height: 80px;
-    background-color: blue;
+    background-color: #4B74FF;
     text-align: center;
+    margin-top: 15px;
 }
 
 .logout-text {
     font-size: 30px;
     color: white;
 }
+
+.but {
+    width: 130px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+
+   

@@ -27,6 +27,26 @@ module.exports = {
         .send(user);
     });
   },
+
+  registerSession: function (req, res, next) {
+    var user = req.body;
+    // Hash the users password for security
+    req.app.get('db').session_create([user.next_trainer,user.next_class, user.next_time, user.next_session]).then(result => {
+      // If err, send err
+      const err = result;
+      console.log("something");
+      if (!err) {
+        console.log(err);
+        return res.status(500)
+          .send(err);
+      }
+      // Send user back without password.
+      res.status(200)
+        .send(user);
+        console.log("grabbed the data");
+    });
+  },
+
   me: (req, res) => {
     if (!req.user) return res.status(401).send('current user not defined');
     //remove password for security, do not send it back
@@ -35,6 +55,13 @@ module.exports = {
     delete user.password;
     //return user object without passwordreturn
     return res.status(200).json(user);
+    console.log(user);
+  },
+
+  info: (req, res) => {
+    app.get('db').get_client([req.params.id]).then(response => {
+      res.status(200).send(response)
+    }).catch(err => console.log(err))
   },
 
   getTrainers: (req, res) => {

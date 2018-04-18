@@ -1,4 +1,6 @@
-angular.module('kg-App', ['ui.router'])
+
+
+angular.module('kg-App', ['ui.router','ngMaterial','ngMessages'])
 .config(function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('login');
 

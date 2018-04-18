@@ -39,7 +39,7 @@
 
 #newform-user-inner-top-text-left {
     position: relative;
-    right: 5px;
+    right: 17px;
 }
 
 #newform-user-inner-top-text-right {
@@ -152,6 +152,21 @@
     justify-content: center;
 }
 
+#newuser-button-container {
+    width: 120px;
+    height: 50px;
+    background-color: white;
+    margin-top: 13px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    border-radius: 2px;
+}
+
+#newuser-button-text {
+    margin-top: 7px;
+}
+
 .newform-button {
     width: 131px;
     height: 41px;
@@ -177,7 +192,7 @@
 .newform-admin-outer-shell {
     width: 720px;
     height: 454px;
-    background-color: #4A90E2;
+    background-color: #4B74FF;
     margin: auto;
     position: absolute;
     top: 0;

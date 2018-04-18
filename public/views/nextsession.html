@@ -6,37 +6,75 @@
         </p>
     </div>
 
-    <form ng-submit="logout()">
+    <form ng-submit="logout();registerSession(user)">
         <div class="trainer-select">
-            <p>Trainer</p>
-            <select>
-                    <option ng-repeat="x in trainers">{{x.username}} {{x.lastname}}</option>
-                    </select>
+                <md-input-container style="margin:0px">
+                        <label>Pick a trainer</label>
+                        <md-select ng-model="user.next_trainer" ng-model="userTrainer">
+                            <md-option>
+                                <em>None</em>
+                            </md-option>
+                            <md-option ng-repeat="t in train" ng-value="t.username">
+                                {{t.username}} {{t.lastname}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
         </div>
+
         <div class="date-picker-container">
-            <p>Please pick a date / time / and session type</p>
+            <p style="position: relative;top:10px">Please pick next session</p>
             <div class="date-picker-selection">
-                <div>
-                    <p>Select date</p>
-                </div>
-                <p>/</p>
-                <div>
-                    <p>Select time</p>
-                </div>
-                <p>/</p>
-                <div>
-                        <select ng-model="register.sessionId" ng-options="session.id as session.name for session in register.sessions"></select>
-                </div>
+
+                <md-input-container style="margin:0px;position:relative;right:15px;font-size:15px">
+                    <md-datepicker ng-model="user.next_class" ng-model="myDate" md-placeholder="Pick a date" md-date-filter="onlyWeekdaysPredicate" md-open-on-focus></md-datepicker>
+                </md-input-container>
+                
+
+                <md-input-container style="margin:0px;position:relative;right:5px;font-size:15px">
+                    <label>Pick a time</label>
+                    <md-select ng-model="user.next_time" ng-model="userTime">
+                        <md-option>
+                            <em>None</em>
+                        </md-option>
+                        <md-option ng-repeat="time in times" ng-value="time.abbrev">
+                            {{time.abbrev}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container style="margin:0px;font-size:15px">
+                    <label>Pick a Session</label>
+                    <md-select ng-model="user.next_session" ng-model="userSession">
+                        <md-option>
+                            <em>None</em>
+                        </md-option>
+                        <md-option ng-repeat="session in sessions" ng-value="session.abbrev">
+                            {{session.abbrev}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
             </div>
         </div>
         <div class="payment-container">
-            <p>How will you pay for this session?</p>
-            <div>
-                <p>Choose your option</p>
-            </div>
+            <!-- <p>How will you pay for this session?</p> -->
+            <md-input-container style="margin:0px;font-size:15px">
+                    <label>Payment</label>
+                    <md-select ng-model="userPayment">
+                        <md-option>
+                            <em>None</em>
+                        </md-option>
+                        <md-option ng-repeat="payment in payments" ng-value="payment.abbrev">
+                            {{payment.abbrev}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
         </div>
+        
         <div class="logout-container">
-            <button class="logout-text" type="submit"><strong>WELCOME {{username}}</strong></button>
+            <button class="logout-text">
+                <strong>Welcome {{first}} {{last}}.</strong>
+            </button>
         </div>
     </form>
 </div>
