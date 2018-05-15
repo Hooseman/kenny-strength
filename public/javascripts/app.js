@@ -1,7 +1,9 @@
 
 
 angular.module('kg-App', ['ui.router','ngMaterial','ngMessages'])
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, ){
+
+  // stripeProvider.setPublishableKey('pk_test_892vlgzCnNCL6twWqu540qiR');
   $urlRouterProvider.otherwise('login');
 
   $stateProvider
@@ -28,16 +30,16 @@ angular.module('kg-App', ['ui.router','ngMaterial','ngMessages'])
   .state('newadmin', {
     url: '/newadmin',
     templateUrl:'./views/newformviews/newadminTemplate.html',
-    controller: "mainCtrl"
+    controller: "adminCtrl"
+  })
+  .state('user', {
+    url: '/user',
+    templateUrl:'./views/user.html',
+    controller: "loginCtrl"
   })
   .state('admin', {
     url: '/admin',
     templateUrl:'./views/admin.html',
     controller: "adminCtrl"
-  })
-  .state('superadmin', {
-    url: '/superadmin',
-    templateUrl:'./views/superadmin.html',
-    controller: "superadminCtrl"
   })
 });

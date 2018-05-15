@@ -1,4 +1,4 @@
-.admin-outer-container {
+.user-outer-container {
     width: 700px;
     height: 700px;
     margin: auto;
@@ -11,12 +11,12 @@
     border-radius: 5px;
 }
 
-.admin-top-half {
+.user-top-half {
     width: 100%;
     height: 42%;
 }
 
-.admin-top-half-change-button {
+.user-top-half-change-button {
     width: 130px;
     height: 40px;
     margin: auto;
@@ -24,65 +24,63 @@
     box-shadow: 0px 2px 8px darkgrey;
 }
 
-#admin-top-half-change-button-text {
+#user-top-half-change-button-text {
     font-size: 25px;
     position: relative;
 }
 
-.admin-top-half-container {
+.user-top-half-container {
     width: 50%;
     height: 100%;
     margin-left: 20px;
 }
 
-.admin-top-half-container-text-container {
+.user-top-half-container-text-container {
     width: 100%;
     height: 15%;
 }
 
-#admin-top-half-container-text-container-text {
+#user-top-half-container-text-container-text {
     font-size: 25px;
     padding-top: 15px;
 }
 
-.admin-top-half-container-bottom {
+.user-top-half-container-bottom {
     width: 100%;
     height: 80%;
-    margin-top: -12px;
+    margin-top: 10px;
     border-style: solid;
     border-color: #9B9B9B;
     border-width: thin;
-    margin-left: 85%;
 }
 
-.admin-top-half-container-bottom-text-container {
+.user-top-half-container-bottom-text-container {
     width: 100%;
     height: 40px;
     background-color: #9B9B9B;
     text-align: center;
 }
 
-#admin-top-half-container-bottom-text-container-text {
+#user-top-half-container-bottom-text-container-text {
     color: white;
     font-size: 25px;
     position: relative;
 }
 
-.admin-bottom-half {
+.user-bottom-half {
     width: 100%;
     height: 45%;
     border-bottom-style: solid;
     border-width: thin;
 }
 
-.admin-bottom-half-top-bar {
+.user-bottom-half-top-bar {
     width: 100%;
     height: 40px;
     background-color: #9B9B9B;
-    display: flex;
 }
 
-.admin-bottom-half-top-bar-list {
+.user-bottom-half-top-bar-list {
     width: 100%;
     height: 40px;
     display: flex;
@@ -92,13 +90,13 @@
     background-color: #EEE5E5;
 }
 
-#admin-bottom-half-top-bar-list-text {
+#user-bottom-half-top-bar-list-text {
     font-size: 18px;
     position: relative;
     padding-top: 6px;
 }
 
-.admin-bottom-half-add-button {
+.user-bottom-half-add-button {
     width: 150px;
     height: 40px;
     margin: auto;
@@ -107,36 +105,30 @@
     margin-top: 25px;
 }
 
-.admin-bottom-half-add-button-button {
+.user-bottom-half-add-button-button {
     display: flex;
 }
 
-#admin-bottom-half-add-button-text {
+#user-bottom-half-add-button-text {
     font-size: 25px;
     white-space: nowrap;
 }
 
-.admin-bottom-half-top-bar-button-one {
-    width: 137px;
-    height: 100%;
-    background-color: red;
-    color: white;
-    text-align: center;
+.user-bottom-half-top-bar-list-info{
+    width: 100%;
+    height: 75%;
+    overflow: scroll;
 }
 
-#admin-bottom-half-top-bar-button-one-text {
-    font-size: 25px;
+.user-bottom-half-top-bar-list-info-text-container{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
 }
 
-.admin-bottom-half-top-bar-button-two {
-    width: 137px;
-    height: 100%;
-    background-color: red;
-    color: white;
-    text-align: center;
-    margin-left: 2px;
-}
-
-#admin-bottom-half-top-bar-button-two-text {
-    font-size: 25px;
+.user-bottom-half-top-bar-list-info-text {
+    height: 30px;
+    width: 100%;
+    font-size: 18px;
+    word-spacing: 20px;
 }

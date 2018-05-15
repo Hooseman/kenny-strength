@@ -1,5 +1,19 @@
 angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stateParams, loginService) {
 
+
+  const getSessions = () => {
+    loginService.getUser().then((response) => {
+      var user_id = response.data.id;
+      console.log("getUser returning this => ",response.data);
+      loginService.getUserSessions(user_id).then((response) => {
+        $scope.sessions = response.data;
+      })
+    })
+  };
+
+  getSessions();
+
+
   // register a new client
 
   $scope.registerUser = (user) => {
@@ -19,7 +33,9 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
     }).catch((err) => {
       alert("Unable to create new user");
     });
-  }
+  };
+
+  // registers a new session
 
   // $scope.registerSession = (user) => {
   //   console.log("hit");
@@ -28,49 +44,90 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
   //       swal('Sorry, this didnt work');
   //     }else{
   //       console.log("you made a session", response.data);
-  //       $state.go('login');
+  //       $state.go('user');
   //     }
   //   }).catch((err) => {
   //     alert("Unable to create session");
   //   });
   // }
 
-  // login
+  $scope.registerSession = (user) => {
+    loginService.getUser().then((response) => {
+      var user_id = response.data.id;
+      console.log(user_id);
+      loginService.registerSession(user,user_id).then((response) => {
+        if (!response.data) {
+          console.warn("There was an error");
+        } else {
+          console.log("you made a session", response.data);
+          $state.go('user');
+          $scope.getUserSessions();
+        }
+      }).catch((err) => {
+        alert("There was an error creating new todo")
+      });
+    })
+  };
+
+  $scope.getUserSessions = () => {
+    loginService.getUser().then((response) => {
+      var user_id = response.data.id;
+      console.log("getUser returning this => ",response.data);
+      loginService.getUserSessions(user_id).then((response) => {
+        $scope.todos = response.data;
+      })
+    })
+  };
+
+  
+
+
+  // login setup
   $scope.login = function (username, password) {
     loginService.login(username, password)
       .then(function (response) {
         var user = response;
+        console.log(user);
         if (user === 'Unauthorized') {
-          swal('Sorry!','Entered an incorrect username or password','warning');
+          swal('Sorry!', 'Entered an incorrect username or password', 'warning');
           $state.go('login');
-        } else {
-          swal( "Success","","success" );
-          $state.go('nextsession');
+        } else if (user.role === 'client') {
+          swal("Welcome back", user.username + " " + user.lastname, "success");
+          $state.go('user');
+        } else if (user.role === 'admin') {
+          swal("Success", user.username + " " + user.lastname , "success");
+          $state.go('admin');
         }
       });
   };
+
+  // returns current logged in user
 
   loginService.getUser().then((response) => {
     var str = response.data.username;
     var firstname = str.charAt(0).toUpperCase() + str.slice(1);;
     $scope.first = firstname;
     var str = response.data.lastname;
-    var lastname = str.toUpperCase().substring(0, 1);
-    $scope.last = lastname;
+    // var lastname = str.toUpperCase().substring(0, 1);
+    $scope.last = str;
+    var userId = response.data.id;
+    console.log(userId);
   });
 
-  // logout
+  // logout user
   $scope.logout = () => {
     loginService.logout().then((response) => {
       console.log("Logged Out");
       $state.go('login');
     })
-  }
+  };
 
   // gets all available trainers
   loginService.trainers().then(function (response) {
+    console.log(response);
     $scope.train = response;
-    });
+  });
+
 
   // session picker
   $scope.userSession = '';
@@ -81,14 +138,14 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
     };
   });
 
-   // payment picker
-   $scope.userPayment = '';
-   $scope.payments = ('Paying-via-venmo' +
-      ' Pay-now').split(' ').map(function (payment) {
-     return {
-       abbrev: payment
-     };
-   });
+  // payment picker
+  $scope.userPayment = '';
+  $scope.payments = ('Paying-via-venmo' +
+    ' Pay-now').split(' ').map(function (payment) {
+    return {
+      abbrev: payment
+    };
+  });
 
   // Date picker
   $scope.myDate = new Date();
@@ -117,4 +174,7 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
       abbrev: time
     };
   });
+
+  $scope.data = true;
+  // $scope.data.cb4 = false;
 });

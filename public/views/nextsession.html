@@ -2,11 +2,11 @@
 <div class="next-session-outer-container">
     <div class="next-session-container-top">
         <p id="next-session-container-top">
-            <strong>Next session</strong>
+            <strong>New session for {{first}} {{last}}</strong>
         </p>
     </div>
 
-    <form ng-submit="logout();registerSession(user)">
+    <form ng-submit="registerSession(user)">
         <div class="trainer-select">
                 <md-input-container style="margin:0px">
                         <label>Pick a trainer</label>
@@ -73,7 +73,7 @@
         
         <div class="logout-container">
             <button class="logout-text">
-                <strong>Welcome {{first}} {{last}}.</strong>
+                <strong>Create New Session</strong>
             </button>
         </div>
     </form>

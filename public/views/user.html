@@ -1,0 +1,46 @@
+<div class="user-outer-container">
+    <div class="user-top-half">
+        <div class="user-top-half-container">
+            <div class="user-top-half-container-text-container">
+                <p id="user-top-half-container-text-container-text">Welcome {{first}} {{last}}</p>
+            </div>
+            <div class="user-top-half-container-bottom">
+                <div class="user-top-half-container-bottom-text-container">
+                    <p id="user-top-half-container-bottom-text-container-text">Next Session</p>
+                </div>
+                <div>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <div class="user-top-half-change-button">
+                        <button><p id="user-top-half-change-button-text">Change</p></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="user-bottom-half">
+        <div class="user-bottom-half-top-bar"></div>
+        <div class="user-bottom-half-top-bar-list">
+            <p id="user-bottom-half-top-bar-list-text">Date</p>
+            <p id="user-bottom-half-top-bar-list-text">Trainer</p>
+            <p id="user-bottom-half-top-bar-list-text">Time</p>
+            <p id="user-bottom-half-top-bar-list-text">Session</p>
+            <p id="user-bottom-half-top-bar-list-text">Payment</p>
+        </div>
+        <div class="user-bottom-half-top-bar-list-info">
+            <div class="user-bottom-half-top-bar-list-info-text-container" ng-repeat="s in sessions track by $index">
+                <div class="user-bottom-half-top-bar-list-info-text">{{s.next_class}} {{s.next_trainer}} {{s.next_time}} {{s.next_session}} {{}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-bottom-half-add-button">
+        <button ui-sref="nextsession" class="user-bottom-half-add-button-button"><p id="user-bottom-half-add-button-text">Add New</p>
+            <svg style="position: relative; margin-left: 10px; bottom: 2px" fill="#000000" height="50" viewBox="0 10 24 8" width="24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+        </button>
+    </div>
+</div>

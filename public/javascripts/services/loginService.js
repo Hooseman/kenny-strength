@@ -12,16 +12,17 @@ angular.module('kg-App').service('loginService', function ($http) {
         });
     };
 
-    // this.registerSession = (user) => {
-    //     return $http({
-    //         method: 'POST',
-    //         url: '/register-session',
-    //         data: user
-    //     }).then((response) => {
-    //         return response;
-    //     });
-    // };
-
+    this.registerSession = (user, user_id) => {
+        return $http({
+            method: 'POST',
+            url: '/register-session/' + user_id,
+            data: user
+        }).then((response) => {
+            // console.log(response.data);
+            return response;
+        });
+    };
+    
     this.login = function (username, password) {
         return $http.post('/login', {
                 username: username,
@@ -37,6 +38,14 @@ angular.module('kg-App').service('loginService', function ($http) {
     this.getUser = function () {
         return $http.get('/me')
             .then(function (response) {
+                return response;
+            });
+    };
+
+    this.getUserSessions = function (user_id) {
+        return $http.get('/client-session/' + user_id)
+            .then(function (response) {
+                console.log(response);
                 return response;
             });
     };

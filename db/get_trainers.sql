@@ -1,1 +1,2 @@
-SELECT * FROM admins;
+SELECT * FROM clients
+WHERE role = 'admin';

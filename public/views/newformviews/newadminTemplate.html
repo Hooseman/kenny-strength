@@ -1,43 +1,42 @@
-<div class="newform-admin-outer-shell">
-    <div class="newform-user-inner-top-shell">
-        <div class="newform-user-inner-top-shell-text-holder">
-            <p ng-click = "switchForm()" id="newform-admin-inner-top-text-left">NEW USER FORM</p> /
-            <p id="newform-admin-inner-top-text-right">NEW ADMIN FORM</p>
-            <div ng-click = "closeMenu()" class="closing-the-form">
+<div class="newform-user-outer-shell">
+        <div class="newform-user-inner-top-shell">
+            <div class="newform-user-inner-top-shell-text-holder">
+                <p id="newform-user-inner-top-text-left">NEW ADMIN FORM</p> 
+                <!-- <div class="closing-the-form">
                     <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                         <path d="M0 0h24v24H0z" fill="none" />
                     </svg>
+                </div> -->
+            </div>
+        </div>
+    <form>
+        <div class="newform-user-inner-bottom-shell">
+            <div class="newform-user-inner-bottom-left-shell">
+                <input class="newform-user-inner-bottom-left-text" id="new-user" type="text" ng-model="user.username" placeholder="First name" data-name="username" required>
+                <input class="newform-user-inner-bottom-left-text" type="text" ng-model="user.lastname" placeholder="Last name" data-name="lastname" required>
+                <input class="newform-user-inner-bottom-left-text" type="email" ng-model="user.email" placeholder="Email">
+                <input class="newform-user-inner-bottom-left-text" type="password" ng-model="user.password" placeholder="Password">
+                <input class="newform-user-inner-bottom-left-text" type="text" ng-model="user.birth_date" placeholder="DOB">
+                <input class="newform-user-inner-bottom-left-text" type="text" ng-model="user.phone" placeholder="Phone #">
+            </div> 
+    
+                <div class="verticle-line"></div>
+    
+            <div class="newform-user-inner-bottom-right-shell">
+                <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.clientaddress" placeholder="Address">
+                <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.city" placeholder="City">
+                <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.zip" placeholder="Zip">
+            </div>
+        </div>
+                <div class="button-container">
+                    <button id="newuser-button-container" type="submit" ng-click="registerAdmin(user)">
+                        <p id="newuser-button-text"><strong>Submit</strong></p>
+                        <svg fill="#000000" height="50" viewBox="0 10 24 8" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                            <path d="M0 0h24v24H0z" fill="none"/>
+                        </svg>
+                    </button>
                 </div>
-        </div>
+        </form>
     </div>
-
-    <div class="newform-user-inner-bottom-shell">
-        <div class="newform-user-inner-bottom-left-shell">
-            <input class="newform-user-inner-bottom-left-text" type="text" placeholder="First name">
-            <input class="newform-user-inner-bottom-left-text" type="text" placeholder="Last name">
-            <input class="newform-user-inner-bottom-left-text" type="text" placeholder="Email">
-            <input class="newform-user-inner-bottom-left-text" type="text" placeholder="Password">
-            <input class="newform-user-inner-bottom-left-text" type="text" placeholder="DOB">
-            <input class="newform-user-inner-bottom-left-text" type="text" placeholder="Phone #">
-        </div>
-
-        <div class="verticle-line"></div>
-
-        <div class="newform-user-inner-bottom-right-shell">
-            <input class="newform-admin-inner-bottom-right-text" type="text" placeholder="Address">
-            <input class="newform-admin-inner-bottom-right-text" type="text" placeholder="City">
-            <input class="newform-admin-inner-bottom-right-text" type="text" placeholder="Zip">
-        </div>
-    </div>
-
-    <div class="button-container">
-        <button class="newform-button">
-            <p id="button-text">SUBMIT</p>
-            <svg fill="#000000" height="30" viewBox="0 0 24 18" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                <path d="M0 0h24v24H0z" fill="none" />
-            </svg>
-        </button>
-    </div>
-</div>

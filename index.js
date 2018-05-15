@@ -11,8 +11,6 @@ const LocalStrategy = require('passport-local').Strategy;
 //dotenv helps when going to production//
 require('dotenv').config();
 
-const charge = require('./charge');
-
 //Initialize express./
 const app = module.exports = express();
 
@@ -21,6 +19,7 @@ const port = process.env.PORT || 3000;
 
 //===REQUIRE CONTROLLERS(BELOW APP.SET)========
 const userCtrl = require('./backendCtrls/userCtrl');
+const trainerCtrl = require('./backendCtrls/trainerCtrl');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -63,14 +62,14 @@ passport.use(new LocalStrategy({
     if (!user) {
       return done(null, 'Unauthorized')
     } else {
-      console.log("found username")
+      // console.log(user)
     }
     //VERIFY PASSWORD MATCHES
     const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
       return done(null, 'Unauthorized')
     } else {
-      // console.log("found username")
+      // console.log(user)
     }
     //USER IS VERIFIED AND THEIR ID IS RETURNED
     return done(null, user.id)
@@ -93,6 +92,8 @@ passport.deserializeUser((id, done) => {
   })
 });
 
+
+
 //===PASSPORT ENDPOINTS===================
 
 app.post('/login', passport.authenticate('local', {
@@ -104,19 +105,31 @@ app.get('/logout', (req, res, next) => {
   return res.status(200).send('logged out');
 });
 
-//===USER ENDPOINTS=========================
-app.post('/register', userCtrl.register);
-app.post('/register-session', userCtrl.registerSession);
+//===LOGIN ENDPOINTS=========================
 app.get('/me', isAuthed, userCtrl.me);
-app.get('/trainers', userCtrl.getTrainers);
-app.get('/user-info/:id', userCtrl.info);
 
+// USER ENDPOINTS
+app.post('/register', userCtrl.register);
+app.post('/register-session/:user_id', userCtrl.registerSession);
+app.get('/user-info/:id', userCtrl.info);
+app.get('/client-session/:user_id', userCtrl.clientSession);
+// app.get('/client-sessions', userCtrl.clientSessions);
+// app.get('/user-times:id', userCtrl.times);
+app.put('/change-session/:id', userCtrl.updateClientSession);
+app.delete('/remove-session/:id', userCtrl.userCancelSession);
+
+// ADMIN ENDPOINTS
+app.get('/trainers', trainerCtrl.getTrainers);
+app.post('/register-trainer', trainerCtrl.registerAdmin);
+app.get('/admin-info/:id', trainerCtrl.adminInfo);
+// app.put('/change-session:id', adminCtrl.changeSession);
+// app.delete('/delete-session:id', adminCtrl.deleteSession);
 
 // endpoint tests
-app.get('/test', userCtrl.test);
-app.get('/get-user/:id', userCtrl.getUser);
-app.post('/create', userCtrl.create);
-app.get('/get-all-creds', userCtrl.getAllCreds);
+// app.get('/test', userCtrl.test);
+// app.get('/get-user/:id', userCtrl.getUser);
+// app.post('/create', userCtrl.create);
+// app.get('/get-all-creds', userCtrl.getAllCreds);
 
 
 ///Listen on app///
