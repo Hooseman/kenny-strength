@@ -5,18 +5,20 @@
         <div class="login-signin-text">
             <strong>Sign In</strong>
         </div>
-        <div class="login-signin-admin-text" ui-sref="adminlogin">Admin? Click here</div>
+        <!-- <div class="login-signin-admin-text" ui-sref="adminlogin">Admin? Click here</div> -->
     </div>
 
     <form ng-submit='login(username, password)'>
-        <div class="login-form-username-container">
-            <div class="login-form-username-text">Username</div>
-            <input id="username-input" type="text" ng-model="username" placeholder="Firstname" required>
+        <!-- <div class="login-form-username-container"> -->
+            <div class="form-group">
+            <!-- <div class="login-form-username-text">Username</div> -->
+            <input id="username-input" class="form-control" type="text" ng-model="username" placeholder="Firstname" required>
         </div>
 
-        <div class="login-form-username-container">
-            <div class="login-form-username-text">Password</div>
-            <input id="username-input" type="password" ng-model="password" placeholder="Password" required>
+        <!-- <div class="login-form-username-container"> -->
+            <div class="form-group">
+            <!-- <div class="login-form-username-text">Password</div> -->
+            <input id="username-input" class="form-control" type="password" ng-model="password" placeholder="Password" required>
         </div>
 
         <div class="submit-login">
@@ -24,8 +26,13 @@
         </div>
     </form>
 
+    <div class="signup-container">
     <div class="bottom-newuser">
         <div ui-sref="newuser">New? Press here</div>
+    </div>
+    <div class="bottom-newuser">
+            <div ui-sref="newuser">New? Press here</div>
+    </div>
     </div>
 
 </div>

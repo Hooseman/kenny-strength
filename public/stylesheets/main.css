@@ -2,18 +2,19 @@
 
 .header-outer-shell {
     width: 100vw;
-    height: 80px;
+    height: 115px;
     z-index: 7;
     position: absolute;
-    background-color: black;
 }
 
 .header-inner-text {
     color: white;
-    font-size: 36px;
+    font-size: 50px;
     top: 10px;
-    margin-left: 15px;
-    margin-top: 15px;
+    margin-left: 56px;
+    margin-top: 30px;
+    transform: scale(1.1, 2.5);
+    font-weight: 100;
 }
 
 
@@ -23,7 +24,7 @@
 
 .login-main-container{
     width: 575px;
-    height: 466px;
+    height: 550px;
     margin: auto;
     position: absolute;
     top: 0;
@@ -31,7 +32,7 @@
     left: 0;
     right: 0;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 2px;
 }
 
 .login-signin-container {
@@ -88,9 +89,13 @@
 
 .bottom-newuser {
     width: 100%;
-    text-align: right;
-    padding-right: 16px;
+    text-align: center;
     margin-top: 25px;
+    font-size: 20px;
+}
+
+.signup-container {
+    display: flex;
 }
 
 /* footer css */
