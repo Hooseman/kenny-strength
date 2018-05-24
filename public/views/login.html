@@ -3,12 +3,12 @@
 <div class="login-main-container">
     <div class="login-signin-container">
         <div class="login-signin-text">
-            <strong>Sign In</strong>
+            <p>Welcome</p>
         </div>
         <!-- <div class="login-signin-admin-text" ui-sref="adminlogin">Admin? Click here</div> -->
     </div>
 
-    <form ng-submit='login(username, password)'>
+    <form class="login-form-container" ng-submit='login(username, password)'>
         <!-- <div class="login-form-username-container"> -->
             <div class="form-group">
             <!-- <div class="login-form-username-text">Username</div> -->
@@ -31,7 +31,7 @@
         <div ui-sref="newuser">New? Press here</div>
     </div>
     <div class="bottom-newuser">
-            <div ui-sref="newuser">New? Press here</div>
+            <div class="login-signin-admin-text" ui-sref="adminlogin">Admin? Click here</div>
     </div>
     </div>
 
