@@ -116,20 +116,17 @@ app.get('/client-session/:user_id', userCtrl.clientSession);
 // app.get('/client-sessions', userCtrl.clientSessions);
 // app.get('/user-times:id', userCtrl.times);
 app.put('/change-session/:id', userCtrl.updateClientSession);
-app.delete('/remove-session/:id', userCtrl.userCancelSession);
+app.delete('/remove-session/:user_id', userCtrl.userCancelSession);
 
 // ADMIN ENDPOINTS
 app.get('/trainers', trainerCtrl.getTrainers);
 app.post('/register-trainer', trainerCtrl.registerAdmin);
+app.post('/register-super', trainerCtrl.registerSuper);
+// app.post('/admin-permission', trainerCtrl.adminPermission);
 app.get('/admin-info/:id', trainerCtrl.adminInfo);
+// app.post('/admin-check', trainerCtrl.adminCheck);
 // app.put('/change-session:id', adminCtrl.changeSession);
 // app.delete('/delete-session:id', adminCtrl.deleteSession);
-
-// endpoint tests
-// app.get('/test', userCtrl.test);
-// app.get('/get-user/:id', userCtrl.getUser);
-// app.post('/create', userCtrl.create);
-// app.get('/get-all-creds', userCtrl.getAllCreds);
 
 
 ///Listen on app///

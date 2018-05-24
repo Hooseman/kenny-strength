@@ -14,14 +14,23 @@
 .user-top-half {
     width: 100%;
     height: 42%;
+    display: flex;
 }
 
 .user-top-half-change-button {
-    width: 130px;
+    width: 100%;
     height: 40px;
     margin: auto;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-top-half-change-button-container {
+    width: 120px;
     box-shadow: 0px 2px 8px darkgrey;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #user-top-half-change-button-text {
@@ -59,12 +68,15 @@
     height: 40px;
     background-color: #9B9B9B;
     text-align: center;
+    display: flex;
+    flex-direction: row;
 }
 
 #user-top-half-container-bottom-text-container-text {
     color: white;
     font-size: 25px;
     position: relative;
+    margin: auto;
 }
 
 .user-bottom-half {
@@ -114,21 +126,64 @@
     white-space: nowrap;
 }
 
-.user-bottom-half-top-bar-list-info{
+.user-bottom-half-top-bar-list-info {
     width: 100%;
     height: 75%;
     overflow: scroll;
 }
 
-.user-bottom-half-top-bar-list-info-text-container{
+.user-bottom-half-top-bar-list-info-text-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     position: relative;
+    width: 100%;
 }
 
 .user-bottom-half-top-bar-list-info-text {
     height: 30px;
-    width: 100%;
     font-size: 18px;
-    word-spacing: 20px;
+    position: relative;
+    right: 14px;
+}
+
+.user-bottom-half-top-bar-list-info-text-one {
+    height: 30px;
+    font-size: 18px;
+    position: relative;
+    right: 39px;
+}
+
+.user-bottom-half-top-bar-list-info-text-two {
+    height: 30px;
+    font-size: 18px;
+    position: relative;
+}
+
+.user-bottom-half-top-bar-list-info-text-three {
+    height: 30px;
+    font-size: 18px;
+    position: relative;
+    width: 100px;
+}
+
+.user-bottom-half-top-bar-list-info-text-four {
+    height: 30px;
+    font-size: 18px;
+    position: relative;
+}
+
+.next-session-container {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 23px;
+}
+
+.logout-button {
+    margin: auto;
+}
+
+#user-top-half-logout-button-text {
+    font-size: 25px;
+    position: relative;
+    top: 7px;
 }

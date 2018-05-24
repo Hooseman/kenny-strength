@@ -25,7 +25,8 @@ username VARCHAR(200)
 CREATE TABLE admin (
 id SERIAL PRIMARY KEY,
 username VARCHAR(200),
-lastname VARCHAR(200)
+lastname VARCHAR(200),
+secret_key VARCHAR(200)
 );
 
 CREATE TABLE client_sessions (
@@ -39,6 +40,7 @@ next_session VARCHAR(200)
 
 CREATE TABLE payment (
 id SERIAL PRIMARY KEY,
+payment_id BIGINT,
 paid VARCHAR
 );
 

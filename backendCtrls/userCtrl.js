@@ -53,7 +53,7 @@ module.exports = {
   },
 
   userCancelSession: (req, res) => {
-    app.get('db').delete_client_session([req.params.id]).then(response => {
+    app.get('db').delete_client_session([req.params.user_id]).then(response => {
       res.status(200).send(response + "item removed succesfully")
     }).catch(err => console.log(err))
   },
@@ -81,43 +81,8 @@ module.exports = {
     }).catch(err => console.log(err))
   },
 
-  // clientSessions: (req, res) => {
-  //   app.get('db').get_client_sessions().then(response => {
-  //     res.status(200).send(response)
-  //   }).catch(err => console.log(err))
-  // }
 
-  // getTrainers: (req, res) => {
-  //   req.app.get('db').get_trainers().then(response => {
-  //     res.status(200).send(response)
-  //   }).catch(err => console.log(err))
-  // },
-  //   test endpoints
-
-  // test: (req, res) => {
-  //   res.send("it worked")
-  // },
-
-  // getUser: (req, res) => {
-  //   req.app.get('db').get_user().then(users => {
-  //     res.status(200).send(users)
-  //   }).catch(err => console.log(err))
-  // },
-
-  // getAllCreds: (req, res) => {
-  //   req.app.get('db').get_clients_creds().then(users => {
-  //     res.status(200).send(users)
-  //   }).catch(err => console.log(err))
-  // },
-
-  // create: (req, res) => {
-  //   const user = req.body;
-  //   req.app.get('db').user_create([
-  //     user.password, user.firstname, user.lastname, user.email, user.phone, user.birth_date, user.clientaddress, user.city, user.zip, user.info
-  //   ]).then(users => {
-  //     res.status(200).send(users)
-  //   }).catch(err => console.log(err))
-  // }
+  
 
   //end of export
 }

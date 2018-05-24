@@ -11,6 +11,7 @@ angular.module('kg-App').service('loginService', function ($http) {
             return response;
         });
     };
+    
 
     this.registerSession = (user, user_id) => {
         return $http({
@@ -22,6 +23,13 @@ angular.module('kg-App').service('loginService', function ($http) {
             return response;
         });
     };
+
+    this.cancelUserSession = (user_id) => {
+        return $http({
+          method: "DELETE",
+          url: "/remove-session/" + user_id
+        })
+      };
     
     this.login = function (username, password) {
         return $http.post('/login', {
@@ -34,6 +42,8 @@ angular.module('kg-App').service('loginService', function ($http) {
                 return err.data;
             });
     };
+
+ 
 
     this.getUser = function () {
         return $http.get('/me')

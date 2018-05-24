@@ -6,17 +6,47 @@
             </div>
             <div class="user-top-half-container-bottom">
                 <div class="user-top-half-container-bottom-text-container">
+                    <div style="width: 50px" ng-click="prevPage()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" viewBox="0 0 24 24">
+                            <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z" />
+                            <path fill="none" d="M0 0h24v24H0z" />
+                        </svg>
+                    </div>
                     <p id="user-top-half-container-bottom-text-container-text">Next Session</p>
-                </div>
-                <div>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <div class="user-top-half-change-button">
-                        <button><p id="user-top-half-change-button-text">Change</p></button>
+                    <div style="width: 50px; padding-left: 10px" ng-click="nextPage()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" viewBox="0 0 24 24">
+                            <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z" />
+                            <path fill="none" d="M0 0h24v24H0z" />
+                        </svg>
                     </div>
                 </div>
+                <div>
+                    <div class="next-session-container">
+                        <div>{{newClass}}</div>
+                        <div>{{trainer}}</div>
+                        <div>{{time}}</div>
+                        <div>{{session}}</div>
+                    </div>
+                    <div class="user-top-half-change-button">
+                        <button class="user-top-half-change-button-container">
+                            <p id="user-top-half-change-button-text">Change</p>
+                        </button>
+                        <button class="user-top-half-change-button-container" ng-click="cancelUserSession()">
+                            <p id="user-top-half-change-button-text">Cancel</p>
+                        </button>
+                    </div>
+                </div>
+                <!-- <div class="logout-button">
+                        <button class="user-top-half-change-button-container">
+                                <p id="user-top-half-change-button-text">Logout</p>
+                        </button>
+                </div> -->
             </div>
+        </div>
+        <div class="logout-button">
+                <button class="user-top-half-change-button-container" ng-click="logout()">
+                        <p id="user-top-half-logout-button-text">Logout</p>
+                </button>
         </div>
     </div>
     <div class="user-bottom-half">
@@ -29,17 +59,23 @@
             <p id="user-bottom-half-top-bar-list-text">Payment</p>
         </div>
         <div class="user-bottom-half-top-bar-list-info">
-            <div class="user-bottom-half-top-bar-list-info-text-container" ng-repeat="s in sessions track by $index">
-                <div class="user-bottom-half-top-bar-list-info-text">{{s.next_class}} {{s.next_trainer}} {{s.next_time}} {{s.next_session}} {{}}</div>
+            <div class="user-bottom-half-top-bar-list-info-text-container" ng-repeat="n in new track by $index">
+                <div class="user-bottom-half-top-bar-list-info-text">{{n.next_class}}</div>
+                <div class="user-bottom-half-top-bar-list-info-text-one">{{n.next_trainer}}</div>
+                <div class="user-bottom-half-top-bar-list-info-text-two">{{n.next_time}}</div>
+                <div class="user-bottom-half-top-bar-list-info-text-three">{{n.next_session}}</div>
+                <div class="user-bottom-half-top-bar-list-info-text-four">{{n.username}}</div>
             </div>
         </div>
     </div>
 
     <div class="user-bottom-half-add-button">
-        <button ui-sref="nextsession" class="user-bottom-half-add-button-button"><p id="user-bottom-half-add-button-text">Add New</p>
-            <svg style="position: relative; margin-left: 10px; bottom: 2px" fill="#000000" height="50" viewBox="0 10 24 8" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-                <path d="M0 0h24v24H0z" fill="none"/>
+        <button ui-sref="nextsession" class="user-bottom-half-add-button-button">
+            <p id="user-bottom-half-add-button-text">Add New</p>
+            <svg style="position: relative; margin-left: 10px; bottom: 2px" fill="#000000" height="50" viewBox="0 10 24 8" width="24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                <path d="M0 0h24v24H0z" fill="none" />
             </svg>
         </button>
     </div>

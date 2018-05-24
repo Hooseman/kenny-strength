@@ -7,6 +7,8 @@ const hashPassword = (password) => {
 };
 module.exports = {
 
+  // create a new trainer
+
   registerAdmin: function (req, res, next) {
     var user = req.body;
     // Hash the users password for security
@@ -27,6 +29,30 @@ module.exports = {
         .send(user);
     });
   },
+
+  registerSuper: function (req, res, next) {
+    var user = req.body;
+    // Hash the users password for security
+    req.app.get('db').post_super([user.username, user.lastname]).then(result => {
+      // If err, send err
+      const err = result;
+
+      console.log(err);
+      if (!err) {
+        console.log(err);
+        return res.status(500)
+          .send(err);
+      }
+    });
+  },
+
+  // adminPermission: (req, res) => {
+  //   app.get('db').get_super_admin([secret_key]).then(result => {
+  //     const user = result[0];
+  //   console.log(user);
+  //   res.status(200).send(response)
+  //   }).catch(err => console.log(err))
+  // },
 
   adminInfo: (req, res) => {
     app.get('db').get_admin([req.params.id]).then(response => {

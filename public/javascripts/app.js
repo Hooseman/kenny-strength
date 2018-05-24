@@ -15,7 +15,7 @@ angular.module('kg-App', ['ui.router','ngMaterial','ngMessages'])
   .state('adminlogin', {
     url: '/adminlogin',
     templateUrl:'./views/adminlogin.html',
-    controller: "adminLoginCtrl"
+    controller: "adminCtrl"
   })
   .state('nextsession', {
     url: '/nextsession',
@@ -40,6 +40,11 @@ angular.module('kg-App', ['ui.router','ngMaterial','ngMessages'])
   .state('admin', {
     url: '/admin',
     templateUrl:'./views/admin.html',
+    controller: "adminCtrl"
+  })
+  .state('superadmin', {
+    url: '/superadmin',
+    templateUrl:'./views/superadmin.html',
     controller: "adminCtrl"
   })
 });

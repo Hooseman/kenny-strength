@@ -1,20 +1,60 @@
 angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stateParams, loginService) {
 
+// Lists all user sessions and creates the next session window
 
-  const getSessions = () => {
-    loginService.getUser().then((response) => {
-      var user_id = response.data.id;
-      console.log("getUser returning this => ",response.data);
-      loginService.getUserSessions(user_id).then((response) => {
-        $scope.sessions = response.data;
-      })
-    })
-  };
+var currentIndex = 0;
+const getSessions = () => {
+ loginService.getUser().then((response) => {
+  var user_id = response.data.id;
+  console.log("getUser returning this => ", response.data);
+  loginService.getUserSessions(user_id).then((response) => {
+    var sessions = response.data;
+    sessions.forEach(e => e.next_class = e.next_class.substring(0, 10));
+    $scope.new = sessions;
 
-  getSessions();
+    $scope.current = sessions[0];
+    $scope.class = $scope.current.next_class;
+    $scope.newClass = new Date($scope.class).toISOString().slice(0,10);
+    $scope.trainer = $scope.current.next_trainer;
+    $scope.time = $scope.current.next_time;
+    $scope.session = $scope.current.next_session;
+  })
+ })
+};
 
+getSessions();
 
-  // register a new client
+// flip to the next assigned session
+
+$scope.nextPage = function() {
+  if ( currentIndex < ($scope.new.length - 1) ) {
+    currentIndex++;
+    $scope.current = $scope.new[currentIndex]
+    $scope.class = $scope.current.next_class;
+    $scope.newClass = new Date($scope.class).toISOString().slice(0,10);
+    $scope.trainer = $scope.current.next_trainer;
+    $scope.time = $scope.current.next_time;
+    $scope.session = $scope.current.next_session;
+  }
+}
+
+// flip back to previous session
+
+$scope.prevPage = function() {
+  if ( currentIndex > 0 ) {
+    currentIndex--;
+    $scope.current = $scope.new[currentIndex]
+    $scope.class = $scope.current.next_class;
+    $scope.newClass = new Date($scope.class).toISOString().slice(0,10);
+    $scope.trainer = $scope.current.next_trainer;
+    $scope.time = $scope.current.next_time;
+    $scope.session = $scope.current.next_session;
+  }
+}
+
+// -------------------------------------------------------------------------------
+
+  // register a new user
 
   $scope.registerUser = (user) => {
     let newUser = $scope.user;
@@ -28,6 +68,7 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
         console.warn("Unable to create new user");
       } else {
         console.log("You created this new user", response.data);
+        swal("Thanks for signing up",response.data.username +" "+ response.data.lastname,"success");
         $state.go('login');
       }
     }).catch((err) => {
@@ -35,27 +76,15 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
     });
   };
 
-  // registers a new session
+// -------------------------------------------------------------------------------
 
-  // $scope.registerSession = (user) => {
-  //   console.log("hit");
-  //   loginService.registerSession(user).then((response) => {
-  //     if (!response.data) {
-  //       swal('Sorry, this didnt work');
-  //     }else{
-  //       console.log("you made a session", response.data);
-  //       $state.go('user');
-  //     }
-  //   }).catch((err) => {
-  //     alert("Unable to create session");
-  //   });
-  // }
+  // registers a new session
 
   $scope.registerSession = (user) => {
     loginService.getUser().then((response) => {
       var user_id = response.data.id;
       console.log(user_id);
-      loginService.registerSession(user,user_id).then((response) => {
+      loginService.registerSession(user, user_id).then((response) => {
         if (!response.data) {
           console.warn("There was an error");
         } else {
@@ -69,18 +98,31 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
     })
   };
 
+// -------------------------------------------------------------------------------
+
   $scope.getUserSessions = () => {
     loginService.getUser().then((response) => {
       var user_id = response.data.id;
-      console.log("getUser returning this => ",response.data);
+      console.log("getUser returning this => ", response.data);
       loginService.getUserSessions(user_id).then((response) => {
         $scope.todos = response.data;
       })
     })
   };
 
-  
+// -------------------------------------------------------------------------------
 
+  $scope.cancelUserSession = () => {
+    loginService.getUser().then((response) => {
+      var user_id = response.data.id;
+      console.log("getUser returning this => ", response.data);
+      loginService.cancelUserSession(user_id).then((response) => {
+        console.log("session canceled")
+      })
+    })
+  };
+
+  // -------------------------------------------------------------------------------
 
   // login setup
   $scope.login = function (username, password) {
@@ -94,13 +136,19 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
         } else if (user.role === 'client') {
           swal("Welcome back", user.username + " " + user.lastname, "success");
           $state.go('user');
-        } else if (user.role === 'admin') {
-          swal("Success", user.username + " " + user.lastname , "success");
+        } else if (user.role === 'admin' && user.username === 'Kenny' && user.lastname === 'Golladay') {
+          swal("Success", user.username + " " + user.lastname, "success");
+          $state.go('superadmin');
+        }else{
+          swal("Success", user.username + " " + user.lastname, "success");
           $state.go('admin');
         }
       });
   };
 
+
+// -------------------------------------------------------------------------------
+  
   // returns current logged in user
 
   loginService.getUser().then((response) => {
@@ -114,6 +162,8 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
     console.log(userId);
   });
 
+  // -------------------------------------------------------------------------------
+
   // logout user
   $scope.logout = () => {
     loginService.logout().then((response) => {
@@ -122,21 +172,26 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
     })
   };
 
+    // -------------------------------------------------------------------------------
+
   // gets all available trainers
   loginService.trainers().then(function (response) {
     console.log(response);
     $scope.train = response;
   });
 
+  // -------------------------------------------------------------------------------
 
   // session picker
-  $scope.userSession = '';
-  $scope.sessions = ('30_Minute' +
-    ' Hour_Session').split(' ').map(function (session) {
+  $scope.userMeetings = '';
+  $scope.meetings = ('30_Minute' +
+    ' Hour_Session').split(' ').map(function (meeting) {
     return {
-      abbrev: session
+      abbrev: meeting
     };
   });
+
+    // -------------------------------------------------------------------------------
 
   // payment picker
   $scope.userPayment = '';
@@ -146,6 +201,8 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
       abbrev: payment
     };
   });
+
+    // -------------------------------------------------------------------------------
 
   // Date picker
   $scope.myDate = new Date();
@@ -159,12 +216,15 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
     $scope.myDate.getFullYear(),
     $scope.myDate.getMonth() + 2,
     $scope.myDate.getDate());
+    
 
   $scope.onlyWeekdaysPredicate = function (date) {
     var day = date.getDay();
     return day === 1 || day === 2 || day === 3 || day === 4 || day === 5;
   };
 
+    // -------------------------------------------------------------------------------
+    
   // Time picker
   $scope.userTime = '';
   $scope.times = ('5:30AM 6:00AM 6:30AM 7:00AM 7:30AM 8:00AM 8:30AM 9:00AM 9:30AM 10:00AM 10:30AM 11:00AM 11:30AM ' +

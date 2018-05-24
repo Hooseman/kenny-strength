@@ -26,7 +26,7 @@
             <div class="date-picker-selection">
 
                 <md-input-container style="margin:0px;position:relative;right:15px;font-size:15px">
-                    <md-datepicker ng-model="user.next_class" ng-model="myDate" md-placeholder="Pick a date" md-date-filter="onlyWeekdaysPredicate" md-open-on-focus></md-datepicker>
+                    <md-datepicker ng-model="user.next_class" ng-model="myDate" md-placeholder="Pick a date" md-date-filter="onlyWeekdaysPredicate" date:"MM/dd/yyyy 'at' h:mma" md-open-on-focus></md-datepicker>
                 </md-input-container>
                 
 
@@ -44,12 +44,12 @@
 
                 <md-input-container style="margin:0px;font-size:15px">
                     <label>Pick a Session</label>
-                    <md-select ng-model="user.next_session" ng-model="userSession">
+                    <md-select ng-model="user.next_session" ng-model="userMeeting">
                         <md-option>
                             <em>None</em>
                         </md-option>
-                        <md-option ng-repeat="session in sessions" ng-value="session.abbrev">
-                            {{session.abbrev}}
+                        <md-option ng-repeat="meeting in meetings" ng-value="meeting.abbrev">
+                            {{meeting.abbrev}}
                         </md-option>
                     </md-select>
                 </md-input-container>
