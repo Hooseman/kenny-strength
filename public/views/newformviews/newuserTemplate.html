@@ -2,32 +2,26 @@
     <div class="newform-user-inner-top-shell">
         <div class="newform-user-inner-top-shell-text-holder">
             <p id="newform-user-inner-top-text-left">NEW USER FORM</p> 
-            <!-- <div class="closing-the-form">
-                <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                    <path d="M0 0h24v24H0z" fill="none" />
-                </svg>
-            </div> -->
         </div>
     </div>
 <form>
     <div class="newform-user-inner-bottom-shell">
-        <div class="newform-user-inner-bottom-left-shell">
-            <input class="newform-user-inner-bottom-left-text" id="new-user" type="text" ng-model="user.username" placeholder="First name" data-name="username" required>
-            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="user.lastname" placeholder="Last name" data-name="lastname" required>
-            <input class="newform-user-inner-bottom-left-text" type="email" ng-model="user.email" placeholder="Email">
-            <input class="newform-user-inner-bottom-left-text" type="password" ng-model="user.password" placeholder="Password">
-            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="user.birth_date" placeholder="DOB">
-            <input class="newform-user-inner-bottom-left-text" type="text" ng-model="user.phone" placeholder="Phone #">
+        <div class="newform-user-inner-bottom-left-shell form-group">
+            <input class="font-look form-control" id="new-user" type="text" ng-model="user.username" placeholder="First name" data-name="username" required>
+            <input class="font-look form-control" type="text" ng-model="user.lastname" placeholder="Last name" data-name="lastname" required>
+            <input class="font-look form-control" type="email" ng-model="user.email" placeholder="Email">
+            <input class="font-look form-control" type="password" ng-model="user.password" placeholder="Password">
+            <input class="font-look form-control" type="text" ng-model="user.birth_date" placeholder="DOB">
+            <input class="font-look form-control" type="text" ng-model="user.phone" placeholder="Phone #">
         </div> 
 
             <div class="verticle-line"></div>
 
-        <div class="newform-user-inner-bottom-right-shell">
-            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.clientaddress" placeholder="Address">
-            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.city" placeholder="City">
-            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.zip" placeholder="Zip">
-            <input class="newform-user-inner-bottom-right-text" type="text" ng-model="user.info" placeholder="Info kg strength should know (optional)">
+        <div class="newform-user-inner-bottom-right-shell ">
+            <input class=" font-look form-control" type="text" ng-model="user.clientaddress" placeholder="Address">
+            <input class=" font-look form-control" type="text" ng-model="user.city" placeholder="City">
+            <input class=" font-look form-control" type="text" ng-model="user.zip" placeholder="Zip">
+            <input class=" font-look form-control" type="text" ng-model="user.info" placeholder="Info kg strength should know">
             <div class="newform-user-inner-bottom-right-text-privacy">
                 <p>KG Strength Training Employees respect your
                     <br> privacy and will not share or view your
@@ -53,14 +47,20 @@
 
         </div>
     </div>
+    <div style="display: flex">
             <div class="button-container">
-                <button id="newuser-button-container" type="submit" ng-click="registerUser(user)">
-                    <p id="newuser-button-text"><strong>Submit</strong></p>
-                    <svg fill="#000000" height="50" viewBox="0 10 24 8" width="24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                    </svg>
+                <button id="newuser-button-container">
+                    <p id="newuser-button-text" ui-sref="login"><strong>Cancel</strong></p>
                 </button>
             </div>
+            <div class="button-container">
+                    <button id="newuser-button-container" type="submit" ng-click="registerUser(user)">
+                            <p id="newuser-button-text"><strong>Submit</strong></p>
+                            <svg fill="#000000" height="50" viewBox="0 10 24 8" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                            </svg>
+                </div>
+                </div>
     </form>
 </div>
