@@ -1,6 +1,6 @@
 .next-session-outer-container {
     width: 575px;
-    height: 430px;
+    height: 600px;
     margin: auto;
     position: absolute;
     top: 0;
@@ -8,7 +8,7 @@
     left: 0;
     right: 0;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 2px;
 }
 
 .next-session-container-top {
@@ -29,6 +29,7 @@
     border-bottom: solid;
     border-bottom-width: thin;
     padding-bottom: 20px;
+    margin-top: 10px;
 }
 
 .app {
@@ -42,8 +43,10 @@
     margin-left: 20px;
     margin-right: 20px;
     padding-top: 20px;
+    padding-bottom: 20px;
     border-bottom: solid;
     border-bottom-width: thin;
+    margin-top: 25px;
 }
 
 .date-picker-selection {
@@ -66,6 +69,8 @@
     background-color: #4B74FF;
     text-align: center;
     margin-top: 15px;
+    position: relative;
+    top: 40px;
 }
 
 .logout-text {
@@ -77,6 +82,15 @@
     width: 130px;
     position: relative;
     margin-bottom: 15px;
+}
+
+.cancel-session {
+    width: 100%;
+    position: relative;
+    margin-top: 53px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 200;
 }
 
 

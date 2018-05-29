@@ -1,5 +1,5 @@
 <div class="user-outer-container">
-    <div class="user-top-half">
+    <!-- <div class="user-top-half">
         <div class="user-top-half-container">
             <div class="user-top-half-container-text-container">
                 <p id="user-top-half-container-text-container-text">Welcome {{first}} {{last}}</p>
@@ -36,11 +36,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- <div class="logout-button">
-                        <button class="user-top-half-change-button-container">
-                                <p id="user-top-half-change-button-text">Logout</p>
-                        </button>
-                </div> -->
             </div>
         </div>
         <div class="logout-button">
@@ -48,9 +43,23 @@
                         <p id="user-top-half-logout-button-text">Logout</p>
                 </button>
         </div>
-    </div>
+    </div> -->
     <div class="user-bottom-half">
-        <div class="user-bottom-half-top-bar"></div>
+        <div class="user-bottom-half-top-bar">
+            <div class="user-tab-account">
+                <p id="user-tab-text">Account management</p>
+            </div>
+            <div class="user-bottom-half-add-button">
+                    <button ui-sref="nextsession" class="user-bottom-half-add-button-button">
+                        <p id="user-bottom-half-add-button-text">Add new</p>
+                        <svg style="position: relative; margin-left: 10px; bottom: 2px" fill="#fff" height="50" viewBox="0 10 24 8" width="24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            <path d="M0 0h24v24H0z" fill="none" />
+                        </svg>
+                    </button>
+                </div>
+        </div>
         <div class="user-bottom-half-top-bar-list">
             <p id="user-bottom-half-top-bar-list-text">Date</p>
             <p id="user-bottom-half-top-bar-list-text">Trainer</p>
@@ -69,7 +78,7 @@
         </div>
     </div>
 
-    <div class="user-bottom-half-add-button">
+    <!-- <div class="user-bottom-half-add-button">
         <button ui-sref="nextsession" class="user-bottom-half-add-button-button">
             <p id="user-bottom-half-add-button-text">Add New</p>
             <svg style="position: relative; margin-left: 10px; bottom: 2px" fill="#000000" height="50" viewBox="0 10 24 8" width="24"
@@ -78,5 +87,5 @@
                 <path d="M0 0h24v24H0z" fill="none" />
             </svg>
         </button>
-    </div>
+    </div> -->
 </div>

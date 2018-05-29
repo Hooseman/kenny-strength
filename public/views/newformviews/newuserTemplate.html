@@ -1,66 +1,72 @@
 <div class="newform-user-outer-shell">
     <div class="newform-user-inner-top-shell">
         <div class="newform-user-inner-top-shell-text-holder">
-            <p id="newform-user-inner-top-text-left">NEW USER FORM</p> 
+            <p id="newform-user-inner-top-text-left">NEW USER FORM</p>
         </div>
     </div>
-<form>
-    <div class="newform-user-inner-bottom-shell">
-        <div class="newform-user-inner-bottom-left-shell form-group">
-            <input class="font-look form-control" id="new-user" type="text" ng-model="user.username" placeholder="First name" data-name="username" required>
-            <input class="font-look form-control" type="text" ng-model="user.lastname" placeholder="Last name" data-name="lastname" required>
-            <input class="font-look form-control" type="email" ng-model="user.email" placeholder="Email">
-            <input class="font-look form-control" type="password" ng-model="user.password" placeholder="Password">
-            <input class="font-look form-control" type="text" ng-model="user.birth_date" placeholder="DOB">
-            <input class="font-look form-control" type="text" ng-model="user.phone" placeholder="Phone #">
-        </div> 
+    <form>
+        <div class="newform-user-inner-bottom-shell">
+            <div class="newform-user-inner-bottom-left-shell">
+                <input class="font-look form-control" id="new-user" type="text" ng-model="user.username" placeholder="First name" data-name="username"
+                    required>
+                <input class="font-look form-control" type="text" ng-model="user.lastname" placeholder="Last name" data-name="lastname" required>
+                <input class="font-look form-control" type="email" ng-model="user.email" placeholder="Email">
+                <input class="font-look form-control" type="password" ng-model="user.password" placeholder="Password">
+                <input class="font-look form-control" type="text" ng-model="user.birth_date" placeholder="DOB">
+                <input class="font-look form-control" type="text" ng-model="user.phone" placeholder="Phone #">
+            </div>
 
             <div class="verticle-line"></div>
 
-        <div class="newform-user-inner-bottom-right-shell ">
-            <input class=" font-look form-control" type="text" ng-model="user.clientaddress" placeholder="Address">
-            <input class=" font-look form-control" type="text" ng-model="user.city" placeholder="City">
-            <input class=" font-look form-control" type="text" ng-model="user.zip" placeholder="Zip">
-            <input class=" font-look form-control" type="text" ng-model="user.info" placeholder="Info kg strength should know">
-            <div class="newform-user-inner-bottom-right-text-privacy">
-                <p>KG Strength Training Employees respect your
-                    <br> privacy and will not share or view your
-                    <br> information with anyone!</p>
-        </div>
+            <div class="newform-user-inner-bottom-right-shell ">
+                <input class=" font-look form-control" type="text" ng-model="user.clientaddress" placeholder="Address">
+                <input class=" font-look form-control" type="text" ng-model="user.city" placeholder="City">
+                <input class=" font-look form-control" type="text" ng-model="user.zip" placeholder="Zip">
+                <input class=" font-look form-control" type="text" ng-model="user.info" placeholder="Info kg strength should know">
+                <div class="newform-user-inner-bottom-right-text-privacy">
+                    <p>KG Strength Training Employees respect your
+                        <br> privacy and will not share or view your
+                        <br> information with anyone!</p>
+                </div>
 
-            <div class="newform-user-inner-very-bottom-shell">
-                <div>
-                    <svg fill="#FF0000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <div class="newform-user-inner-very-bottom-shell">
+                    <div>
+                        <svg fill="#FF0000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                        </svg>
+                    </div>
+                    <p id="waiver-text">
+                        <strong>PLEASE SIGN WAIVER</strong> (required)</p>
+                    <button class="waiver-button">
+                        <svg fill="#FFFFFF" height="24" viewBox="0 0 24 15" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                            <path d="M0 0h24v24H0z" fill="none" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <div style="display: flex">
+            <div class="button-container">
+                <div id="newuser-button-container">
+                    <p id="newuser-button-text" ui-sref="login">
+                        <strong>Cancel</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="button-container">
+                <div id="newuser-button-container" type="submit" ng-click="registerUser(user)">
+                    <p id="newuser-button-text">
+                        <strong>Submit</strong>
+                    </p>
+                    <svg fill="#FFFFFF" height="50" viewBox="0 7 24 8" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                         <path d="M0 0h24v24H0z" fill="none" />
-                        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
                     </svg>
                 </div>
-                <p id="waiver-text">
-                    <strong>PLEASE SIGN WAIVER</strong> (required)</p>
-                <button class="waiver-button">
-                    <svg fill="#FFFFFF" height="24" viewBox="0 0 24 15" width="24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-                        <path d="M0 0h24v24H0z" fill="none"/>
-                    </svg>
-                </button>
             </div>
-
         </div>
-    </div>
-    <div style="display: flex">
-            <div class="button-container">
-                <button id="newuser-button-container">
-                    <p id="newuser-button-text" ui-sref="login"><strong>Cancel</strong></p>
-                </button>
-            </div>
-            <div class="button-container">
-                    <button id="newuser-button-container" type="submit" ng-click="registerUser(user)">
-                            <p id="newuser-button-text"><strong>Submit</strong></p>
-                            <svg fill="#000000" height="50" viewBox="0 10 24 8" width="24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-                                <path d="M0 0h24v24H0z" fill="none"/>
-                            </svg>
-                </div>
-                </div>
     </form>
 </div>

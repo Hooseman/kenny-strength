@@ -67,14 +67,16 @@
 }
 
 #username-input {
-    padding-top: 10px;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 200;
-    height: 55px;;
+    margin-top: 10px;
+    height: 70px;
 }
 
 .login-form-username-text {
-
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .submit-login {
@@ -107,13 +109,27 @@
     color: white;
 }
 
-/* footer css */
-
-/* .footer-outer-shell {
-    width: 100vw;
-    height: 60px;
-    z-index: 7;
+.check-submit-login {
+    width: 94%;
+    height: 80px;
+    background-color: #4B74FF;
+    margin: auto;
+    text-align: center;
     position: relative;
-    background-color: black;
-    top: 963px;
-} */
+    top: 200px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.back-button-admin {
+    color: white;
+    position: relative;
+    top: 229px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 25px;
+}

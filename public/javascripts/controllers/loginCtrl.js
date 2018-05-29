@@ -9,6 +9,7 @@ const getSessions = () => {
   console.log("getUser returning this => ", response.data);
   loginService.getUserSessions(user_id).then((response) => {
     var sessions = response.data;
+    console.log(sessions);
     sessions.forEach(e => e.next_class = e.next_class.substring(0, 10));
     $scope.new = sessions;
 

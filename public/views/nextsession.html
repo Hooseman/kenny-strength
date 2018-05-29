@@ -8,7 +8,7 @@
 
     <form ng-submit="registerSession(user)">
         <div class="trainer-select">
-                <md-input-container style="margin:0px">
+                <md-input-container style="margin:0px;font-size: 25px; font-weight: 200">
                         <label>Pick a trainer</label>
                         <md-select ng-model="user.next_trainer" ng-model="userTrainer">
                             <md-option>
@@ -22,15 +22,20 @@
         </div>
 
         <div class="date-picker-container">
-            <p style="position: relative;top:10px">Please pick next session</p>
+                <div class="date-picker-selection">
+    
+                    <md-input-container style="margin:0px;position:relative;right:15px;font-size:15px">
+                        <md-datepicker ng-model="user.next_class" ng-model="myDate" md-placeholder="Pick a date" md-date-filter="onlyWeekdaysPredicate" date:"MM/dd/yyyy 'at' h:mma" md-open-on-focus></md-datepicker>
+                    </md-input-container>
+                    
+                </div>
+            </div>
+
+        <div class="date-picker-container">
             <div class="date-picker-selection">
 
-                <md-input-container style="margin:0px;position:relative;right:15px;font-size:15px">
-                    <md-datepicker ng-model="user.next_class" ng-model="myDate" md-placeholder="Pick a date" md-date-filter="onlyWeekdaysPredicate" date:"MM/dd/yyyy 'at' h:mma" md-open-on-focus></md-datepicker>
-                </md-input-container>
-                
 
-                <md-input-container style="margin:0px;position:relative;right:5px;font-size:15px">
+                <md-input-container style="margin:0px;position:relative;right:5px;font-size:25px;font-weight: 200">
                     <label>Pick a time</label>
                     <md-select ng-model="user.next_time" ng-model="userTime">
                         <md-option>
@@ -42,7 +47,7 @@
                     </md-select>
                 </md-input-container>
 
-                <md-input-container style="margin:0px;font-size:15px">
+                <md-input-container style="margin:0px;font-size:25px; font-weight: 200">
                     <label>Pick a Session</label>
                     <md-select ng-model="user.next_session" ng-model="userMeeting">
                         <md-option>
@@ -56,8 +61,7 @@
 
             </div>
         </div>
-        <div class="payment-container">
-            <!-- <p>How will you pay for this session?</p> -->
+        <!-- <div class="payment-container">
             <md-input-container style="margin:0px;font-size:15px">
                     <label>Payment</label>
                     <md-select ng-model="userPayment">
@@ -69,7 +73,7 @@
                         </md-option>
                     </md-select>
                 </md-input-container>
-        </div>
+        </div> -->
         
         <div class="logout-container">
             <button class="logout-text">
@@ -77,4 +81,5 @@
             </button>
         </div>
     </form>
+    <div class="cancel-session" ui-sref="user">Cancel</div>
 </div>

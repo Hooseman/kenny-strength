@@ -1,21 +1,23 @@
 <div class="login-main-container">
         <div class="login-signin-container">
             <div class="login-signin-text">
-                <strong>Admin Check</strong>
+                Admin Check
             </div>
         </div>
-    
+    <div style="margin-top: 27px">
         <form ng-submit='adminPermission(secret_key)'>
             <div class="login-form-username-container">
-                <div class="login-form-username-text">Secret</div>
-                <input id="username-input" type="text" ng-model="secret_key" placeholder="Secret Key" required>
+                <div class="login-form-username-text">Please see owner for key</div>
+                <input id="username-input" class="form-control" type="text" ng-model="username" placeholder="First name" required>
+                <input id="username-input" class="form-control" type="text" ng-model="secret_key" placeholder="Secret Key" required>
             </div>
     
-            <div class="submit-login">
+            <div class="check-submit-login">
                 <button id="button-text" type="submit"><strong>Check</strong></button>
             </div>
+            <div class="back-button-admin" ui-sref="login">Or go back</div>
         </form>
-    
+    </div>
        
     
     </div>
