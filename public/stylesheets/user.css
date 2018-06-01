@@ -7,7 +7,7 @@
     bottom: 0;
     left: 30px;
     right: 0;
-    background-color: white;
+    background-color: rgba(0,0,0,.3);
     border-radius: 5px;
 }
 
@@ -156,6 +156,7 @@
     justify-content: space-around;
     position: relative;
     width: 100%;
+    color: white;
 }
 
 .user-bottom-half-top-bar-list-info-text {
