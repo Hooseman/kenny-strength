@@ -113,10 +113,8 @@ app.post('/register', userCtrl.register);
 app.post('/register-session/:user_id', userCtrl.registerSession);
 app.get('/user-info/:id', userCtrl.info);
 app.get('/client-session/:user_id', userCtrl.clientSession);
-// app.get('/client-sessions', userCtrl.clientSessions);
-// app.get('/user-times:id', userCtrl.times);
-app.put('/change-session/:id', userCtrl.updateClientSession);
-app.delete('/remove-session/:user_id', userCtrl.userCancelSession);
+app.put('/update-session/:id', userCtrl.updateClientSession);
+app.delete('/remove-session/:id', userCtrl.userCancelSession);
 
 // ADMIN ENDPOINTS
 app.get('/trainers', trainerCtrl.getTrainers);

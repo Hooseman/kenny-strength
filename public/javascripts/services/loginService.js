@@ -24,10 +24,21 @@ angular.module('kg-App').service('loginService', function ($http) {
         });
     };
 
-    this.cancelUserSession = (user_id) => {
+    this.cancelUserSessions = () => {
         return $http({
           method: "DELETE",
-          url: "/remove-session/" + user_id
+          url: '/remove-session/' + id
+        }).then((response) => {
+            return response;
+        })
+      };
+
+      this.updateUserSessions = () => {
+        return $http({
+          method: "PUT",
+          url: '/update-session/' + id
+        }).then((response) => {
+            return response;
         })
       };
     
@@ -51,6 +62,14 @@ angular.module('kg-App').service('loginService', function ($http) {
                 return response;
             });
     };
+
+    this.getSessions = function () {
+        return $http.get('/sessions')
+            .then(function (response) {
+                return response;
+            });
+    };
+
 
     this.getUserSessions = function (user_id) {
         return $http.get('/client-session/' + user_id)

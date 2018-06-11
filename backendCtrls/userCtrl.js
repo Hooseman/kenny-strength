@@ -53,7 +53,7 @@ module.exports = {
   },
 
   userCancelSession: (req, res) => {
-    app.get('db').delete_client_session([req.params.user_id]).then(response => {
+    app.get('db').delete_client_session([req.params.id]).then(response => {
       res.status(200).send(response + "item removed succesfully")
     }).catch(err => console.log(err))
   },
@@ -80,9 +80,6 @@ module.exports = {
       res.status(200).send(response)
     }).catch(err => console.log(err))
   },
-
-
-  
 
   //end of export
 }

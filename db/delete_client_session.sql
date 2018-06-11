@@ -1,2 +1,2 @@
 delete from client_sessions
-  where id = $1;
+  where client_sessions.id = $1;

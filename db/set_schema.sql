@@ -35,7 +35,8 @@ user_id BIGINT,
 next_trainer VARCHAR(200),
 next_class VARCHAR(200),
 next_time VARCHAR(200),
-next_session VARCHAR(200)
+next_session VARCHAR(200),
+payment VARCHAR
 );
 
 CREATE TABLE payment (
