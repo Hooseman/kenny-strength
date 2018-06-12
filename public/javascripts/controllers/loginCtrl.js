@@ -131,8 +131,21 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
   // cancels a session
 
   $scope.cancelUserSessions = (id) => {
+    // const currentIndex = id - 1;
+  if (currentIndex <= 0) {
+      swal({
+        title: "Remove item?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Remove",
+        cancelButtonText: "Keep",
+        animation: "slide-from-top"
+      },
+      () => {
     loginService.cancelUserSessions(id).then((response) => {})
     getSessions();
+      });
+    };
   };
 
   // -------------------------------------------------------------------------------
