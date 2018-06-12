@@ -24,7 +24,7 @@ angular.module('kg-App').service('loginService', function ($http) {
         });
     };
 
-    this.cancelUserSessions = () => {
+    this.cancelUserSessions = (id) => {
         return $http({
           method: "DELETE",
           url: '/remove-session/' + id

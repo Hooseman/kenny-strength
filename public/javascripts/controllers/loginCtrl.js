@@ -130,8 +130,9 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
 
   // cancels a session
 
-  $scope.cancelUserSessions = () => {
-    loginService.cancelUserSessions().then((response) => {})
+  $scope.cancelUserSessions = (id) => {
+    loginService.cancelUserSessions(id).then((response) => {})
+    getSessions();
   };
 
   // -------------------------------------------------------------------------------
