@@ -22,6 +22,11 @@ angular.module('kg-App', ['ui.router','ngMaterial','ngMessages'])
     templateUrl:'./views/nextsession.html',
     controller: "loginCtrl"
   })
+  .state('changesession', {
+    url: '/changesession',
+    templateUrl:'./views/changesession.html',
+    controller: "loginCtrl"
+  })
   .state('newuser', {
     url: '/newuser',
     templateUrl:'./views/newformviews/newuserTemplate.html',

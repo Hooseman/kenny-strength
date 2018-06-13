@@ -131,14 +131,14 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
   // cancels a session
 
   $scope.cancelUserSessions = (id) => {
-    // const currentIndex = id - 1;
   if (currentIndex <= 0) {
       swal({
-        title: "Remove item?",
+        title: "Are you sure?",
+        text: "Session will be deleted",
         type: "warning",
         showCancelButton: true,
-        confirmButtonText: "Remove",
-        cancelButtonText: "Keep",
+        confirmButtonText: "Delete",
+        cancelButtonText: "Keep Session",
         animation: "slide-from-top"
       },
       () => {
@@ -152,8 +152,28 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
 
   // edits a session
 
-  $scope.updatelUserSessions = () => {
-    loginService.updateUserSessions().then((response) => {})
+  $scope.updateUserSessions = (id,user) => {
+    swal({
+      title: "Are you sure?",
+      text: "Session will be changed",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Change",
+      cancelButtonText: "Keep Session",
+      animation: "slide-from-top"
+    },
+    () => {
+    console.log(user);
+    loginService.updateUserSessions(id,user).then((response) => {
+      if (!response.data) {
+        console.warn("There was an error");
+      } else {
+        console.log("you updated a session", response.data);
+        getSessions();
+        $state.go('user');
+    };
+  });
+  });
   };
 
   // -------------------------------------------------------------------------------

@@ -33,10 +33,11 @@ angular.module('kg-App').service('loginService', function ($http) {
         })
       };
 
-      this.updateUserSessions = () => {
+      this.updateUserSessions = (id,user) => {
         return $http({
           method: "PUT",
-          url: '/update-session/' + id
+          url: '/update-session/' + id,
+          data: user 
         }).then((response) => {
             return response;
         })

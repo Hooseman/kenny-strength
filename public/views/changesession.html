@@ -1,0 +1,75 @@
+<!-- nextsession -->
+<div class="next-session-outer-container">
+        <div class="next-session-container-top">
+            <p id="next-session-container-top">
+                <strong>Edit session for {{first}} {{last}}</strong>
+            </p>
+        </div>
+    
+        <div ng-repeat="n in new track by $index">
+        <form ng-submit="updateUserSessions(n.id,user)">
+            <div class="trainer-select">
+                <!-- <div ng-repeat="n in new track by $index"></div> -->
+                    <md-input-container style="margin:0px;font-size: 25px; font-weight: 200">
+                            <label>Pick a trainer</label>
+                            <md-select ng-model="user.next_trainer" ng-model="userTrainer">
+                                <md-option>
+                                    <em>None</em>
+                                </md-option>
+                                <md-option ng-repeat="t in train" ng-value="t.username">
+                                    {{t.username}} {{t.lastname}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+            </div>
+    
+            <div class="date-picker-container">
+                    <div class="date-picker-selection">
+        
+                        <md-input-container style="margin:0px;position:relative;right:15px;font-size:15px">
+                            <md-datepicker ng-model="user.next_class" ng-model="myDate" md-placeholder="Pick a date" md-date-filter="onlyWeekdaysPredicate" date:"MM/dd/yyyy 'at' h:mma" md-open-on-focus></md-datepicker>
+                        </md-input-container>
+                        
+                    </div>
+                </div>
+    
+            <div class="date-picker-container">
+                <div class="date-picker-selection">
+    
+    
+                    <md-input-container style="margin:0px;position:relative;right:5px;font-size:25px;font-weight: 200">
+                        <label>Pick a time</label>
+                        <md-select ng-model="user.next_time" ng-model="userTime">
+                            <md-option>
+                                <em>None</em>
+                            </md-option>
+                            <md-option ng-repeat="time in times" ng-value="time.abbrev">
+                                {{time.abbrev}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+    
+                    <md-input-container style="margin:0px;font-size:25px; font-weight: 200">
+                        <label>Pick a Session</label>
+                        <md-select ng-model="user.next_session" ng-model="userMeeting">
+                            <md-option>
+                                <em>None</em>
+                            </md-option>
+                            <md-option ng-repeat="meeting in meetings" ng-value="meeting.abbrev">
+                                {{meeting.abbrev}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+    
+                </div>
+            </div>
+            
+            <div class="logout-container">
+                <button class="logout-text">
+                    <strong>Create New Session</strong>
+                </button>
+            </div>
+        </form>
+        </div>
+        <div class="cancel-session" ui-sref="user">Cancel</div>
+    </div>
