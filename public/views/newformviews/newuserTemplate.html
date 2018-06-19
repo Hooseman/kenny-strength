@@ -10,18 +10,18 @@
                 <input class="font-look form-control" id="new-user" type="text" ng-model="user.username" placeholder="First name" data-name="username"
                     required>
                 <input class="font-look form-control" type="text" ng-model="user.lastname" placeholder="Last name" data-name="lastname" required>
-                <input class="font-look form-control" type="email" ng-model="user.email" placeholder="Email">
-                <input class="font-look form-control" type="password" ng-model="user.password" placeholder="Password">
-                <input class="font-look form-control" type="text" ng-model="user.birth_date" placeholder="DOB">
-                <input class="font-look form-control" type="text" ng-model="user.phone" placeholder="Phone #">
+                <input class="font-look form-control" type="email" ng-model="user.email" placeholder="Email" required>
+                <input class="font-look form-control" type="password" ng-model="user.password" placeholder="Password" required>
+                <input class="font-look form-control" type="text" ng-model="user.birth_date" placeholder="DOB" required>
+                <input class="font-look form-control" type="text" ng-model="user.phone" placeholder="Phone #" required>
             </div>
 
             <div class="verticle-line"></div>
 
             <div class="newform-user-inner-bottom-right-shell ">
-                <input class=" font-look form-control" type="text" ng-model="user.clientaddress" placeholder="Address">
-                <input class=" font-look form-control" type="text" ng-model="user.city" placeholder="City">
-                <input class=" font-look form-control" type="text" ng-model="user.zip" placeholder="Zip">
+                <input class=" font-look form-control" type="text" ng-model="user.clientaddress" placeholder="Address" required>
+                <input class=" font-look form-control" type="text" ng-model="user.city" placeholder="City" required>
+                <input class=" font-look form-control" type="text" ng-model="user.zip" placeholder="Zip" required>
                 <input class=" font-look form-control" type="text" ng-model="user.info" placeholder="Info kg strength should know">
                 <div class="newform-user-inner-bottom-right-text-privacy">
                     <p>KG Strength Training Employees respect your

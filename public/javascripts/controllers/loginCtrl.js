@@ -35,16 +35,6 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
           }
       }
         $scope.new = sessions;
-        // $scope.unpaid = $scope.new.length;
-        // console.log($scope.unpaid);
-
-        // $scope.current = sessions[0];
-
-        // $scope.class = $scope.current.next_class;
-        // $scope.newClass = new Date($scope.class).toISOString().slice(0,10);
-        // $scope.trainer = $scope.current.next_trainer;
-        // $scope.time = $scope.current.next_time;
-        // $scope.session = $scope.current.next_session;
       })
     })
   };
@@ -58,6 +48,7 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
     $scope.unpaid = 0;
   }
   // -------------------------------------------------------------------------------
+
 $scope.unpaidSession = true;
 $scope.paidSession = false;
 $scope.sessionUnpaid = () => {
