@@ -46,13 +46,13 @@ module.exports = {
     });
   },
 
-  // adminPermission: (req, res) => {
-  //   app.get('db').get_super_admin([secret_key]).then(result => {
-  //     const user = result[0];
-  //   console.log(user);
-  //   res.status(200).send(response)
-  //   }).catch(err => console.log(err))
-  // },
+  adminPermission: (req, res) => {
+    app.get('db').get_secret_key([req.params.id]).then(response => {
+      const user = response;
+      console.log("success")
+      res.status(200).send(response)
+    }).catch(err => console.log(err))
+  },
 
   adminInfo: (req, res) => {
     app.get('db').get_admin([req.params.id]).then(response => {

@@ -1,49 +1,4 @@
 <div class="user-outer-container">
-    <!-- <div class="user-top-half">
-        <div class="user-top-half-container">
-            <div class="user-top-half-container-text-container">
-                <p id="user-top-half-container-text-container-text">Welcome {{first}} {{last}}</p>
-            </div>
-            <div class="user-top-half-container-bottom">
-                <div class="user-top-half-container-bottom-text-container">
-                    <div style="width: 50px" ng-click="prevPage()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" viewBox="0 0 24 24">
-                            <path d="M11.67 3.87L9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z" />
-                            <path fill="none" d="M0 0h24v24H0z" />
-                        </svg>
-                    </div>
-                    <p id="user-top-half-container-bottom-text-container-text">Next Session</p>
-                    <div style="width: 50px; padding-left: 10px" ng-click="nextPage()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" viewBox="0 0 24 24">
-                            <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z" />
-                            <path fill="none" d="M0 0h24v24H0z" />
-                        </svg>
-                    </div>
-                </div>
-                <div>
-                    <div class="next-session-container">
-                        <div>{{newClass}}</div>
-                        <div>{{trainer}}</div>
-                        <div>{{time}}</div>
-                        <div>{{session}}</div>
-                    </div>
-                    <div class="user-top-half-change-button">
-                        <button class="user-top-half-change-button-container">
-                            <p id="user-top-half-change-button-text">Change</p>
-                        </button>
-                        <button class="user-top-half-change-button-container" ng-click="cancelUserSession()">
-                            <p id="user-top-half-change-button-text">Cancel</p>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="logout-button">
-                <button class="user-top-half-change-button-container" ng-click="logout()">
-                        <p id="user-top-half-logout-button-text">Logout</p>
-                </button>
-        </div>
-    </div> -->
     <div class="user-bottom-half">
         <div class="user-bottom-half-top-bar">
             <div class="user-tab-account">
@@ -61,11 +16,11 @@
         </div>
         <div class="user-bottom-half-top-bar-list">
             <div class="user-bottom-half-top-bar-list-container">
-            <p style="right:26px" id="user-bottom-half-top-bar-list-text">Date</p>
-            <p style="right:32px" id="user-bottom-half-top-bar-list-text">Trainer</p>
-            <p style="right:41px" id="user-bottom-half-top-bar-list-text">Time</p>
-            <p style="right:41px" id="user-bottom-half-top-bar-list-text">Session</p>
-            <p style="right:41px" id="user-bottom-half-top-bar-list-text">Payment</p>
+                <p style="right:26px" id="user-bottom-half-top-bar-list-text">Date</p>
+                <p style="right:32px" id="user-bottom-half-top-bar-list-text">Trainer</p>
+                <p style="right:41px" id="user-bottom-half-top-bar-list-text">Time</p>
+                <p style="right:41px" id="user-bottom-half-top-bar-list-text">Session</p>
+                <p style="right:41px" id="user-bottom-half-top-bar-list-text">Payment</p>
             </div>
         </div>
         <div class="user-bottom-half-top-bar-list-info">
@@ -75,20 +30,34 @@
                 <div class="user-bottom-half-top-bar-list-info-text-two">{{n.next_time}}</div>
                 <div class="user-bottom-half-top-bar-list-info-text-three">{{n.next_session}}</div>
                 <div class="user-bottom-half-top-bar-list-info-text-four">{{n.payment}}</div>
-                <div ui-sref="changesession">
+                <div class="edit" ui-sref="changesession">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="24" height="24" viewBox="0 0 24 24">
                         <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
                         />
                         <path d="M0 0h24v24H0z" fill="none" />
                     </svg>
                 </div>
-                <div>
+                <div class="delete">
                     <svg xmlns="http://www.w3.org/2000/svg" ng-click="cancelUserSessions(n.id)" fill="#fff" width="24" height="24" viewBox="0 0 24 24">
                         <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
                         <path d="M0 0h24v24H0z" fill="none" />
                         <div ng-repeat="n in new track by $index"></div>
                     </svg>
-                    
+
+                </div>
+                <div ng-if="unpaidSession" class="notPaid">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#FF0000" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+                        />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                    </svg>
+                </div>
+                <div ng-if="paidSession" class="Paid">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#008000" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                        />
+                    </svg>
                 </div>
             </div>
         </div>

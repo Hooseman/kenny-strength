@@ -25,8 +25,7 @@ username VARCHAR(200)
 CREATE TABLE admin (
 id SERIAL PRIMARY KEY,
 username VARCHAR(200),
-lastname VARCHAR(200),
-secret_key VARCHAR(200)
+lastname VARCHAR(200)
 );
 
 CREATE TABLE client_sessions (
@@ -45,5 +44,8 @@ payment_id BIGINT,
 paid VARCHAR
 );
 
-
-
+CREATE TABLE secret_key (
+id SERIAL PRIMARY KEY,
+secret_key VARCHAR(200)
+);
+INSERT INTO secret_key (secret_key) VALUES('secret');

@@ -120,7 +120,7 @@ app.delete('/remove-session/:id', userCtrl.userCancelSession);
 app.get('/trainers', trainerCtrl.getTrainers);
 app.post('/register-trainer', trainerCtrl.registerAdmin);
 app.post('/register-super', trainerCtrl.registerSuper);
-// app.post('/admin-permission', trainerCtrl.adminPermission);
+app.post('/admin-permission/:secret_key', trainerCtrl.adminPermission);
 app.get('/admin-info/:id', trainerCtrl.adminInfo);
 // app.post('/admin-check', trainerCtrl.adminCheck);
 // app.put('/change-session:id', adminCtrl.changeSession);

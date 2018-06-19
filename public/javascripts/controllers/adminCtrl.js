@@ -37,15 +37,15 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
     })
   };
 
-  // $scope.adminPermission = function (secret_key) {
-  //   adminService.adminPermission(secret_key)
-  //     .then(function (response) {
-  //       if (!response.data) {
-  //         console.warn("Unable to get creds");
-  //       } else{ 
-  //         $state.go('newadmin');
-  //       }
-  //     });
-  // };
+  $scope.adminPermission = function (secret_key) {
+    adminService.adminPermission(secret_key)
+      .then(function (response) {
+        if (!response.data) {
+          console.warn("Unable to get creds");
+        } else{ 
+          $state.go('newadmin');
+        }
+      });
+  };
 
 });

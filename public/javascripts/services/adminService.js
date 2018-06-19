@@ -23,16 +23,16 @@ angular.module('kg-App').service('adminService', function ($http) {
         });
     };
 
-    // this.adminPermission = (secret_key) => {
-    //     return $http({
-    //         method: 'POST',
-    //         url: '/admin-permission',
-    //         data: secret_key
-    //     }).then((response) => {
-    //         console.log(response);
-    //         return response;
-    //     });
-    // };
+    this.adminPermission = (secret_key) => {
+        console.log(secret_key);
+        return $http({
+            method: 'POST',
+            url: '/admin-permission/' + secret_key,
+        }).then((response) => {
+            console.log(response);
+            return response;
+        });
+    };
 
   
 

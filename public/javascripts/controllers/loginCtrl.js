@@ -1,5 +1,8 @@
 angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stateParams, loginService) {
 
+  // -------------------------------------------------------------------------------
+  // gets the current logged in user
+
   loginService.getUser().then((response) => {
     var str = response.data.username;
     var firstname = str.charAt(0).toUpperCase() + str.slice(1);;
@@ -8,8 +11,8 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
     // var lastname = str.toUpperCase().substring(0, 1);
     $scope.last = str;
     $scope.userId = response.data.id;
-    // console.log(userId);
   });
+  // -------------------------------------------------------------------------------
 
   // Lists all user sessions and creates the next session window
   var currentIndex = 0;
@@ -24,8 +27,16 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
         var sessions = response.data;
         console.log(sessions);
         sessions.forEach(e => e.next_class = e.next_class.substring(0, 10));
-
+        for (var payment in sessions) { // iterate through all payments
+          if (sessions[payment].payment == 'paid') { // if the person has paid
+              $scope.paid++; // count a payment
+          } else { // if the person hasn't paid
+              $scope.unpaid++; // count a non-payment
+          }
+      }
         $scope.new = sessions;
+        // $scope.unpaid = $scope.new.length;
+        // console.log($scope.unpaid);
 
         // $scope.current = sessions[0];
 
@@ -40,33 +51,30 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
 
   getSessions();
 
-  // flip to the next assigned session
+// -------------------------------------------------------------------------------
+// sets the sessions to zero
 
-  // $scope.nextPage = function() {
-  //   if ( currentIndex < ($scope.new.length - 1) ) {
-  //     currentIndex++;
-  //     $scope.current = $scope.new[currentIndex]
-  //     $scope.class = $scope.current.next_class;
-  //     $scope.newClass = new Date($scope.class).toISOString().slice(0,10);
-  //     $scope.trainer = $scope.current.next_trainer;
-  //     $scope.time = $scope.current.next_time;
-  //     $scope.session = $scope.current.next_session;
-  //   }
-  // }
+  const refreshSessions = () => {
+    $scope.unpaid = 0;
+  }
+  // -------------------------------------------------------------------------------
+$scope.unpaidSession = true;
+$scope.paidSession = false;
+$scope.sessionUnpaid = () => {
+  loginService.getUser().then((response) => {
+    var user_id = response.data.id;
+    loginService.getUserSessions(user_id).then((response) => {
+      var sessions = response.data;
+      for (var payment in sessions) { // iterate through all payments
+        if (sessions[payment].payment == 'paid') { // if the person has paid
+          $scope.unpaidSession != $scope.unpaidSession && $scope.paidSession != $scope.paidSession;
+        } 
+    }
+    })
+  })
+};
 
-  // flip back to previous session
 
-  // $scope.prevPage = function() {
-  //   if ( currentIndex > 0 ) {
-  //     currentIndex--;
-  //     $scope.current = $scope.new[currentIndex]
-  //     $scope.class = $scope.current.next_class;
-  //     $scope.newClass = new Date($scope.class).toISOString().slice(0,10);
-  //     $scope.trainer = $scope.current.next_trainer;
-  //     $scope.time = $scope.current.next_time;
-  //     $scope.session = $scope.current.next_session;
-  //   }
-  // }
 
 
   // -------------------------------------------------------------------------------
@@ -143,6 +151,7 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
       },
       () => {
     loginService.cancelUserSessions(id).then((response) => {})
+    refreshSessions();
     getSessions();
       });
     };

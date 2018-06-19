@@ -1,2 +1,2 @@
-INSERT INTO admin (username,lastname,secret_key)
-values ($1, $2, 'none');
+INSERT INTO admin (username,lastname)
+values ($1, $2);
