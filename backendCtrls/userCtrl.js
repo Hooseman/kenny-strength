@@ -29,7 +29,7 @@ module.exports = {
   registerSession: function (req, res) {
     var user = req.body;
     // Hash the users password for security
-    req.app.get('db').post_session_create([req.params.user_id, user.next_trainer, user.next_class, user.next_time, user.next_session]).then(result => {
+    req.app.get('db').post_session_create([req.params.user_id, req.params.username, user.next_trainer, user.next_class, user.next_time, user.next_session]).then(result => {
       // If err, send err
       const err = result;
       console.log("something");

@@ -4,11 +4,19 @@ angular.module('kg-App').service('adminService', function ($http) {
         
         return $http({
             method: 'POST',
-            url: '/register-trainer',
+            url: '/register-admin',
             data: user
         }).then((response) => {
-            return response;
+            console.log(response);
+            return $http({
+                method: 'POST',
+                url: '/register-trainer',
+                data: user
+            }).then((response) => {
+                return response;
+            });
         });
+        return response;
     };
 
     this.registerSuper = (user) => {
@@ -34,6 +42,25 @@ angular.module('kg-App').service('adminService', function ($http) {
         });
     };
 
-  
+    this.logout = function () {
+        return $http.get('/logout')
+            .then(function (response) {
+                return response.data;
+            });
+    };
 
+    this.getUser = function () {
+        return $http.get('/me')
+            .then(function (response) {
+                return response;
+            });
+    };
+
+    this.getAdminSessions = function (user_id) {
+        return $http.get('/admin-session/' + user_id)
+            .then(function (response) {
+                console.log(response);
+                return response;
+            });
+    };
 });

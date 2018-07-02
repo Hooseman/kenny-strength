@@ -30,6 +30,27 @@ module.exports = {
     });
   },
 
+  registerTrainer: function (req, res, next) {
+    var user = req.body;
+    // Hash the users password for security
+    user.password = hashPassword(user.password);
+    req.app.get('db').post_trainer([user.username, user.lastname, user.email, user.phone, user.password, user.birth_date, user.clientaddress, user.city, user.zip, user.info]).then(result => {
+      // If err, send err
+      const err = result;
+
+      console.log(err);
+      if (!err) {
+        console.log(err);
+        return res.status(500)
+          .send(err);
+      }
+      // Send user back without password.
+      delete user.password;
+      res.status(200)
+        .send(user);
+    });
+  },
+
   registerSuper: function (req, res, next) {
     var user = req.body;
     // Hash the users password for security
@@ -45,6 +66,27 @@ module.exports = {
       }
     });
   },
+
+  registerTrainerId: function (req, res) {
+    var user = req.body;
+    // Hash the users password for security
+    req.app.get('db').post_trainer_id([user.next_trainer, user.next_class, user.next_time, user.next_session]).then(result => {
+      // If err, send err
+      const err = result;
+      console.log("something");
+      if (!err) {
+        console.log(err);
+        return res.status(500)
+          .send(err);
+      }
+      res.status(200)
+        .send(user);
+        console.log("grabbed the data");
+    });
+  },
+
+  
+  
 
   adminPermission: (req, res) => {
     app.get('db').get_secret_key([req.params.id]).then(response => {
@@ -64,5 +106,12 @@ module.exports = {
     req.app.get('db').get_trainers().then(response => {
       res.status(200).send(response)
     }).catch(err => console.log(err))
-  }
+  },
+
+  adminSession: (req, res) => {
+    app.get('db').get_admin_sessions([req.params.user_id]).then(response => {
+      console.log(response);
+      res.status(200).send(response)
+    }).catch(err => console.log(err))
+  },
 };

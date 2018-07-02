@@ -13,14 +13,14 @@ angular.module('kg-App').service('loginService', function ($http) {
     };
     
 
-    this.registerSession = (user, user_id) => {
+    this.registerSession = (user, user_id, username) => {
+        
         return $http({
             method: 'POST',
-            url: '/register-session/' + user_id,
+            url: '/register-session/' + user_id + '/' + username,
             data: user
         }).then((response) => {
-            // console.log(response.data);
-            return response;
+           return response;
         });
     };
 
@@ -91,6 +91,7 @@ angular.module('kg-App').service('loginService', function ($http) {
 
     this.trainers = function () {
         return $http.get('/trainers').then(function (response) {
+            console.log(response);
             return response.data;
         })
     }

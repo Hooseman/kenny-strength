@@ -83,7 +83,7 @@ $scope.sessionUnpaid = () => {
       if (!response.data) {
         console.warn("Unable to create new user");
       } else {
-        console.log("You created this new user", response.data);
+        console.log("You created this new user", response);
         swal("Thanks for signing up", response.data.username + " " + response.data.lastname, "success");
         $state.go('login');
       }
@@ -101,8 +101,10 @@ $scope.sessionUnpaid = () => {
   $scope.registerSession = (user) => {
     loginService.getUser().then((response) => {
       var user_id = response.data.id;
+      var username = response.data.username
       console.log(user_id);
-      loginService.registerSession(user, user_id).then((response) => {
+      loginService.registerSession(user, user_id, username).then((response) => {
+        console.log(username);
         if (!response.data) {
           console.warn("There was an error");
         } else {
@@ -205,15 +207,15 @@ $scope.sessionUnpaid = () => {
 
   // returns current logged in user
 
-  loginService.getUser().then((response) => {
-    var str = response.data.username;
-    var firstname = str.charAt(0).toUpperCase() + str.slice(1);;
-    $scope.first = firstname;
-    var str = response.data.lastname;
-    // var lastname = str.toUpperCase().substring(0, 1);
-    $scope.last = str;
-    $scope.userId = response.data.id;
-  });
+  // loginService.getUser().then((response) => {
+  //   var str = response.data.username;
+  //   var firstname = str.charAt(0).toUpperCase() + str.slice(1);;
+  //   $scope.first = firstname;
+  //   var str = response.data.lastname;
+  //   // var lastname = str.toUpperCase().substring(0, 1);
+  //   $scope.last = str;
+  //   $scope.userId = response.data.id;
+  // });
 
   // -------------------------------------------------------------------------------
 

@@ -1,2 +1,2 @@
-INSERT INTO admin (username,lastname)
+INSERT INTO super (username,lastname)
 values ($1, $2);
