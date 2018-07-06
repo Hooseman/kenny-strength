@@ -124,10 +124,11 @@ app.post('/register-trainer-id', trainerCtrl.registerTrainerId);
 app.post('/register-trainer', trainerCtrl.registerTrainer);
 app.post('/register-super', trainerCtrl.registerSuper);
 app.post('/admin-permission/:secret_key', trainerCtrl.adminPermission);
+app.put('/admin-payment/:id', trainerCtrl.adminPayment);
 app.get('/admin-info/:id', trainerCtrl.adminInfo);
 // app.post('/admin-check', trainerCtrl.adminCheck);
 // app.put('/change-session:id', adminCtrl.changeSession);
-// app.delete('/delete-session:id', adminCtrl.deleteSession);
+app.delete('/admin-session-cancel/:id', trainerCtrl.deleteSession);
 
 
 ///Listen on app///

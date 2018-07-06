@@ -31,6 +31,26 @@ angular.module('kg-App').service('adminService', function ($http) {
         });
     };
 
+    this.adminPayment = (id) => {
+        
+        return $http({
+            method: 'PUT',
+            url: '/admin-payment/' + id
+        }).then((response) => {
+            console.log(response);
+            return response;
+        });
+    };
+
+    this.cancelAdminSessions = (id) => {
+        return $http({
+          method: "DELETE",
+          url: '/admin-session-cancel/' + id
+        }).then((response) => {
+            return response;
+        })
+      };
+
     this.adminPermission = (secret_key) => {
         console.log(secret_key);
         return $http({

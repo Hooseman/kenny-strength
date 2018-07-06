@@ -1,85 +1,126 @@
-<div class="user-outer-container">
-        <div class="user-bottom-half">
-            <div class="user-bottom-half-top-bar">
-                <div class="user-tab-account">
-                    <p id="user-tab-text">Account management</p>
-                </div>
-                <!-- <div class="user-bottom-half-add-button">
-                    <button ui-sref="nextsession" class="user-bottom-half-add-button-button">
-                        <p id="user-bottom-half-add-button-text">Add new</p>
+<div class="admin-outer-container">
+    <div class="admin-bottom-half">
+        <div class="admin-bottom-half-top-bar">
+            <div class="admin-tab-account">
+                <p id="admin-tab-text">Account management</p>
+            </div>
+            <!-- <div class="admin-bottom-half-add-button">
+                    <button ui-sref="nextsession" class="admin-bottom-half-add-button-button">
+                        <p id="admin-bottom-half-add-button-text">Add new</p>
                         <svg style="position: relative; margin-left: 10px; bottom: 2px" fill="#fff" height="50" viewBox="0 10 24 8" width="24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                             <path d="M0 0h24v24H0z" fill="none" />
                         </svg>
                     </button>
                 </div> -->
+        </div>
+        <div class="admin-bottom-half-top-bar-list">
+            <div class="admin-bottom-half-top-bar-list-container">
+                <p style="right:26px" id="admin-bottom-half-top-bar-list-text">Date</p>
+                <p id="admin-bottom-half-top-bar-list-text">Client</p>
+                <p style="left:35px" id="admin-bottom-half-top-bar-list-text">Time</p>
+                <p style="left:67px" id="admin-bottom-half-top-bar-list-text">Session</p>
+                <p style="left:100px" id="admin-bottom-half-top-bar-list-text">Payment</p>
             </div>
-            <div class="user-bottom-half-top-bar-list">
-                <div class="user-bottom-half-top-bar-list-container">
-                    <p style="right:26px" id="user-bottom-half-top-bar-list-text">Date</p>
-                    <p style="right:32px" id="user-bottom-half-top-bar-list-text">Client</p>
-                    <p style="right:41px" id="user-bottom-half-top-bar-list-text">Time</p>
-                    <p style="right:41px" id="user-bottom-half-top-bar-list-text">Session</p>
-                    <p style="right:41px" id="user-bottom-half-top-bar-list-text">Payment</p>
+        </div>
+        <div class="admin-bottom-half-top-bar-list-info">
+            <div class="admin-bottom-half-top-bar-list-info-text-container" ng-repeat="n in new track by $index" ng-click="clickForInfo()">
+                <div class="admin-bottom-half-top-bar-list-info-text">
+                <div>{{n.next_class}}</div>
+                </div>
+                <div class="admin-bottom-half-top-bar-list-info-text-one">
+                <div>{{n.username}}</div>
+                </div>
+                <div class="admin-bottom-half-top-bar-list-info-text-two">
+                <div>{{n.next_time}}</div>
+                </div>
+                <div class="admin-bottom-half-top-bar-list-info-text-three">
+                <div>{{n.next_session}}</div>
+                </div>
+                <div class="admin-bottom-half-top-bar-list-info-text-four">
+                    <div>{{n.payment}}</div>
                 </div>
             </div>
-            <div class="user-bottom-half-top-bar-list-info">
-                <div class="user-bottom-half-top-bar-list-info-text-container" ng-repeat="n in new track by $index">
-                    <div class="user-bottom-half-top-bar-list-info-text">{{n.next_class}}</div>
-                    <div class="user-bottom-half-top-bar-list-info-text-one">{{n.next_trainer}}</div>
-                    <div class="user-bottom-half-top-bar-list-info-text-two">{{n.next_time}}</div>
-                    <div class="user-bottom-half-top-bar-list-info-text-three">{{n.next_session}}</div>
-                    <div class="user-bottom-half-top-bar-list-info-text-four">{{n.payment}}</div>
-                    <div class="edit" ui-sref="changesession">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
-                            />
-                            <path d="M0 0h24v24H0z" fill="none" />
-                        </svg>
-                    </div>
-                    <div class="delete">
-                        <svg xmlns="http://www.w3.org/2000/svg" ng-click="cancelUserSessions(n.id)" fill="#fff" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                            <path d="M0 0h24v24H0z" fill="none" />
-                            <div ng-repeat="n in new track by $index"></div>
-                        </svg>
-    
-                    </div>
-                    <div ng-if="unpaidSession" class="notPaid">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#FF0000" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
-                            />
-                            <path d="M0 0h24v24H0z" fill="none" />
-                        </svg>
-                    </div>
-                    <div ng-if="paidSession" class="Paid">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="#008000" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                            />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div style="display: flex">
-            <div class="paid-session-container">
-                <div class="paid-session-container-text">{{paid}}</div>
-            </div>
-            <div id="paid-session-text">Paid sessions</div>
-        </div>
-    
-        <div style="display: flex">
-            <div class="not-paid-session-container">
-                <div class="paid-session-container-text">{{unpaid}}</div>
-            </div>
-            <div id="unpaid-session-text">Unpaid sessions</div>
-        </div>
-    
-        <div class="logout-button">
-            <button class="user-top-half-change-button-container" ng-click="logout()">
-                <p id="user-top-half-logout-button-text">Logout</p>
-            </button>
         </div>
     </div>
+
+    <div class="admin-client-info" ng-if="clientInfo" ng-repeat="n in new track by $index">
+        <div class="admin-client-info-one">
+            <div class="admin-client-info-one-text">
+                <p>Mark as paid?</p>
+                <div ng-click="adminPayment(n.id);clickForInfo()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#00FF00" width="100" height="100" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="admin-client-info-two">
+            <div class="admin-client-info-three">
+                <div class="admin-edit" ui-sref="changesession">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="90" height="90" viewBox="0 0 24 24">
+                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                        />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                    </svg>
+                </div>
+            </div>
+            <div class="admin-client-info-four" ng-click="cancelAdminSessions(n.id);clickForInfo()">
+                <div class="admin-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" ng-click="canceladminSessions(n.id)" fill="#fff" width="100" height="100" viewBox="0 0 24 24">
+                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <div ng-repeat="n in new track by $index"></div>
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="unpaid-sessions-container" ng-if="showUnpaid">
+        <div class="unpaid-sessions-container-payment">
+            <div style="display: flex">
+                <div ng-repeat="u in unpaidSesh track by $index" class="unpaid-sessions-container-payment-inner-box">
+                    <div>{{u.next_trainer}}</div>
+                    <div>{{u.next_class}}</div>
+                    <div>{{u.next_time}}</div>
+                    <div>{{u.payment}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="pay-all-container">
+                <div>
+                    <p>{{unpaid}} Collections</p>
+                    <p>${{total}}</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-sm" style="width: 135px; height: 58px; font-size: 25px; background-color: #0275d8">Pay for all</button>
+                </div>
+                </div>
+        <div class="unpaid-pay-all">
+            <button ng-click="showUnpaidList();hideLogoutOne()" style="font-size: 30px; color: white" type="button">Go back</button>
+        </div>
+    </div>
+
+    <div style="display: flex" ng-if = "hideLogout">
+        <div class="admin-paid-session-container">
+            <div class="admin-paid-session-container-text">{{paid}}</div>
+        </div>
+        <div id="admin-paid-session-text">Paid sessions</div>
+    </div>
+
+    <div style="display: flex" ng-click="hideLogoutOne();showUnpaidList()" ng-if = "hideLogout">
+        <div class="admin-not-paid-session-container">
+            <div class="admin-paid-session-container-text">{{unpaid}}</div>
+        </div>
+        <div id="admin-unpaid-session-text">Unpaid sessions</div>
+    </div>
+
+    <div class="admin-logout-button" ng-if = "hideLogout">
+        <button class="admin-top-half-change-button-container" ng-click="logout()">
+            <p id="admin-top-half-logout-button-text">Logout</p>
+        </button>
+    </div>
+</div>

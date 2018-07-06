@@ -18,6 +18,11 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
   var currentIndex = 0;
   $scope.unpaid = 0;
   $scope.paid = 0;
+  $scope.halfDue = 0;
+  $scope.hourDue = 0;
+  $scope.total = 0;
+  $scope.unpaidSesh = [];
+  $scope.paidSesh = [];
 
   const getSessions = () => {
     loginService.getUser().then((response) => {
@@ -28,12 +33,25 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
         console.log(sessions);
         sessions.forEach(e => e.next_class = e.next_class.substring(0, 10));
         for (var payment in sessions) { // iterate through all payments
-          if (sessions[payment].payment == 'paid') { // if the person has paid
+          if (sessions[payment].payment == 'Paid') { // if the person has paid
               $scope.paid++; // count a payment
+              $scope.paidSesh.push(sessions[payment]);
+              console.log($scope.paidSesh);
           } else { // if the person hasn't paid
               $scope.unpaid++; // count a non-payment
+              $scope.unpaidSesh.push(sessions[payment]);
+              console.log($scope.unpaidSesh);
           }
       }
+      for (var next_session in $scope.unpaidSesh) {
+        if ($scope.unpaidSesh[next_session].next_session == '30_Minute') {
+          $scope.halfDue = $scope.halfDue + 25;
+        }else if($scope.unpaidSesh[next_session].next_session == 'Hour_Session'){
+          $scope.hourDue = $scope.hourDue + 50;
+        }
+      }
+        $scope.total = $scope.halfDue + $scope.hourDue;
+        console.log($scope.total);
         $scope.new = sessions;
       })
     })
@@ -46,27 +64,23 @@ angular.module('kg-App').controller('loginCtrl', function ($scope, $state, $stat
 
   const refreshSessions = () => {
     $scope.unpaid = 0;
+    $scope.paid = 0;
+    $scope.halfDue = 0;
+    $scope.hourDue = 0;
+    $scope.unpaidSesh = [];
+    $scope.paidSesh = [];
   }
   // -------------------------------------------------------------------------------
 
-$scope.unpaidSession = true;
-$scope.paidSession = false;
-$scope.sessionUnpaid = () => {
-  loginService.getUser().then((response) => {
-    var user_id = response.data.id;
-    loginService.getUserSessions(user_id).then((response) => {
-      var sessions = response.data;
-      for (var payment in sessions) { // iterate through all payments
-        if (sessions[payment].payment == 'paid') { // if the person has paid
-          $scope.unpaidSession != $scope.unpaidSession && $scope.paidSession != $scope.paidSession;
-        } 
-    }
-    })
-  })
+$scope.showUnpaid = false;
+$scope.showUnpaidList = () => {
+  $scope.showUnpaid = !$scope.showUnpaid;
 };
 
-
-
+$scope.hideLogout = true;
+$scope.hideLogoutOne = () => {
+  $scope.hideLogout = !$scope.hideLogout;
+};
 
   // -------------------------------------------------------------------------------
 

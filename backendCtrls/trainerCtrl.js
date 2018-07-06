@@ -85,7 +85,20 @@ module.exports = {
     });
   },
 
-  
+  adminPayment: (req, res) => {
+    var par = req.params;
+    var user = req.body;
+    app.get('db').update_payment([par.id, user.payment]).then(response => {
+      res.status(200).send(response + "item updated succesfully")
+    }).catch(err => console.log(err))
+  },
+
+  deleteSession: (req, res) => {
+    console.log("hit");
+    app.get('db').delete_client_session([req.params.id]).then(response => {
+      res.status(200).send(response + "item removed succesfully")
+    }).catch(err => console.log(err))
+  },
   
 
   adminPermission: (req, res) => {

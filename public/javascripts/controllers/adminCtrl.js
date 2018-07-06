@@ -2,7 +2,7 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
 
   // -------------------------------------------------------------------------------
   // gets the current logged in user
-  
+
 
   adminService.getUser().then((response) => {
     var str = response.data.username;
@@ -84,6 +84,8 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
   $scope.unpaid = 0;
   $scope.paid = 0;
   $scope.trainerSesh = [];
+  $scope.unpaidSesh = [];
+  $scope.paidSesh = [];
 
   const getSessions = () => {
     adminService.getUser().then((response) => {
@@ -106,13 +108,15 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
         }
 
         for (var payment in $scope.trainerSesh) { // iterate through all payments
-          if ($scope.trainerSesh[payment].payment == 'paid') { // if the person has paid
+          if ($scope.trainerSesh[payment].payment == 'Paid') { // if the person has paid
             $scope.paid++; // count a payment
+            $scope.paidSesh.push($scope.trainerSesh[payment]);
           } else { // if the person hasn't paid
             $scope.unpaid++; // count a non-payment
+            $scope.unpaidSesh.push($scope.trainerSesh[payment]);
           }
         }
-    
+
         $scope.new = $scope.trainerSesh;
       })
     })
@@ -121,12 +125,71 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
   getSessions();
 
   // -------------------------------------------------------------------------------
+
   // sets the sessions to zero
 
   const refreshSessions = () => {
     $scope.unpaid = 0;
-  }
+    $scope.paid = 0;
+    $scope.trainerSesh = [];
+    getSessions();
+  };
   // -------------------------------------------------------------------------------
+
+$scope.showUnpaid = false;
+$scope.showUnpaidList = () => {
+  $scope.showUnpaid = !$scope.showUnpaid;
+};
+
+$scope.hideLogout = true;
+$scope.hideLogoutOne = () => {
+  $scope.hideLogout = !$scope.hideLogout;
+};
+
+
+  // ----------------------------------------------------------------
+
+  $scope.clientInfo = false;
+  $scope.clickForInfo = () => {
+    $scope.clientInfo = !$scope.clientInfo;
+    console.log($scope.clientInfo);
+  };
+
+  // ----------------------------------------------------------------
+
+
+    $scope.adminPayment = function (id) {
+      adminService.adminPayment(id)
+        .then(function (response) {
+          if (!response.data) {
+            console.warn("Unable to get creds");
+          } else {
+            console.log("session was paid");
+            refreshSessions();
+          }
+        });
+    };
+  
+    // ----------------------------------------------------------------
+
+    $scope.cancelAdminSessions = (id) => {
+      if (currentIndex <= 0) {
+          swal({
+            title: "Are you sure?",
+            text: "Session will be deleted",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+            cancelButtonText: "Keep Session",
+            animation: "slide-from-top"
+          },
+          () => {
+        adminService.cancelAdminSessions(id).then((response) => {})
+        refreshSessions();
+        console.log("deleted");
+          });
+        };
+      };
 
   // ----------------------------------------------------------------
 
