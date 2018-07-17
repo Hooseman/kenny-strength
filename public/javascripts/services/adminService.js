@@ -32,6 +32,7 @@ angular.module('kg-App').service('adminService', function ($http) {
     };
 
     this.adminPayment = (id) => {
+        console.log(id);
         
         return $http({
             method: 'PUT',

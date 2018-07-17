@@ -89,7 +89,8 @@ module.exports = {
     var par = req.params;
     var user = req.body;
     app.get('db').update_payment([par.id, user.payment]).then(response => {
-      res.status(200).send(response + "item updated succesfully")
+      res.status(200).send(response)
+      console.log(response);
     }).catch(err => console.log(err))
   },
 

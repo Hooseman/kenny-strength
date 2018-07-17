@@ -1,9 +1,9 @@
 
 
 angular.module('kg-App', ['ui.router','ngMaterial','ngMessages'])
-.config(function($stateProvider, $urlRouterProvider, ){
+.config(function($stateProvider, $urlRouterProvider ){
 
-  // stripeProvider.setPublishableKey('pk_test_892vlgzCnNCL6twWqu540qiR');
+  // stripeProvider.setPublishableKey('pk_test_jlM2VKn7ZAbrk1hImLtHoJ4e');
   $urlRouterProvider.otherwise('login');
 
   $stateProvider

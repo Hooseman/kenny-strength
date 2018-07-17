@@ -83,6 +83,9 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
   var currentIndex = 0;
   $scope.unpaid = 0;
   $scope.paid = 0;
+  $scope.halfDue = 0;
+  $scope.hourDue = 0;
+  $scope.total = 0;
   $scope.trainerSesh = [];
   $scope.unpaidSesh = [];
   $scope.paidSesh = [];
@@ -92,10 +95,10 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
       console.log(response);
       var user_id = response.data.id;
       var user = response.data.username;
-      console.log("getUser returning this => ", response.data);
+      // console.log("getUser returning this => ", response.data);
       adminService.getAdminSessions(user_id).then((response) => {
         var sessions = response.data;
-        console.log(sessions);
+        // console.log(sessions);
         sessions.forEach(e => e.next_class = e.next_class.substring(0, 10));
 
         for (var next_trainer in sessions) { // iterate through all payments
@@ -116,7 +119,15 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
             $scope.unpaidSesh.push($scope.trainerSesh[payment]);
           }
         }
-
+        for (var next_session in $scope.unpaidSesh) {
+          if ($scope.unpaidSesh[next_session].next_session == '30_Minute') {
+            $scope.halfDue = $scope.halfDue + 25;
+          } else if ($scope.unpaidSesh[next_session].next_session == 'Hour_Session') {
+            $scope.hourDue = $scope.hourDue + 50;
+          }
+        }
+        $scope.total = $scope.halfDue + $scope.hourDue;
+        // console.log($scope.total);
         $scope.new = $scope.trainerSesh;
       })
     })
@@ -132,19 +143,23 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
     $scope.unpaid = 0;
     $scope.paid = 0;
     $scope.trainerSesh = [];
-    getSessions();
+    $scope.halfDue = 0;
+    $scope.hourDue = 0;
+    $scope.unpaidSesh = [];
+    $scope.paidSesh = [];
+    // getSessions();
   };
   // -------------------------------------------------------------------------------
 
-$scope.showUnpaid = false;
-$scope.showUnpaidList = () => {
-  $scope.showUnpaid = !$scope.showUnpaid;
-};
+  $scope.showUnpaid = false;
+  $scope.showUnpaidList = () => {
+    $scope.showUnpaid = !$scope.showUnpaid;
+  };
 
-$scope.hideLogout = true;
-$scope.hideLogoutOne = () => {
-  $scope.hideLogout = !$scope.hideLogout;
-};
+  $scope.hideLogout = true;
+  $scope.hideLogoutOne = () => {
+    $scope.hideLogout = !$scope.hideLogout;
+  };
 
 
   // ----------------------------------------------------------------
@@ -152,44 +167,60 @@ $scope.hideLogoutOne = () => {
   $scope.clientInfo = false;
   $scope.clickForInfo = () => {
     $scope.clientInfo = !$scope.clientInfo;
-    console.log($scope.clientInfo);
+    // console.log($scope.clientInfo);
   };
 
   // ----------------------------------------------------------------
 
 
-    $scope.adminPayment = function (id) {
-      adminService.adminPayment(id)
-        .then(function (response) {
-          if (!response.data) {
-            console.warn("Unable to get creds");
-          } else {
-            console.log("session was paid");
-            refreshSessions();
-          }
+
+  $scope.adminPayment = function (id) {
+    if (currentIndex <= 0) {
+      swal({
+          title: "Are you sure?",
+          text: "Session will be marked as paid",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Paid",
+          cancelButtonText: "Cancel",
+          animation: "slide-from-top"
+        },
+        () => {
+          adminService.adminPayment(id)
+            .then(function (response) {
+              if (!response.data) {
+                console.warn("Unable to get creds");
+              } else {
+                console.log("session was paid");
+                refreshSessions();
+                getSessions();
+              };
+            });
+        });
+    }
+  };
+
+  // ----------------------------------------------------------------
+
+  $scope.cancelAdminSessions = (id) => {
+    if (currentIndex <= 0) {
+      swal({
+          title: "Are you sure?",
+          text: "Session will be deleted",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Delete",
+          cancelButtonText: "Keep Session",
+          animation: "slide-from-top"
+        },
+        () => {
+          adminService.cancelAdminSessions(id).then((response) => {})
+          refreshSessions();
+          getSessions();
+          console.log("deleted");
         });
     };
-  
-    // ----------------------------------------------------------------
-
-    $scope.cancelAdminSessions = (id) => {
-      if (currentIndex <= 0) {
-          swal({
-            title: "Are you sure?",
-            text: "Session will be deleted",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Delete",
-            cancelButtonText: "Keep Session",
-            animation: "slide-from-top"
-          },
-          () => {
-        adminService.cancelAdminSessions(id).then((response) => {})
-        refreshSessions();
-        console.log("deleted");
-          });
-        };
-      };
+  };
 
   // ----------------------------------------------------------------
 

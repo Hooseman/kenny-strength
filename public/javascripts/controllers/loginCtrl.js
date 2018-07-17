@@ -307,4 +307,5 @@ $scope.hideLogoutOne = () => {
 
   $scope.data = true;
   // $scope.data.cb4 = false;
+  
 });
