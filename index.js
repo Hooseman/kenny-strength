@@ -118,6 +118,7 @@ app.delete('/remove-session/:id', userCtrl.userCancelSession);
 
 // ADMIN ENDPOINTS
 app.get('/trainers', trainerCtrl.getTrainers);
+app.get('/get-all-sessions', trainerCtrl.getAllSessions);
 app.get('/admin-session/:user_id', trainerCtrl.adminSession);
 app.post('/register-admin', trainerCtrl.registerAdmin);
 app.post('/register-trainer-id', trainerCtrl.registerTrainerId);

@@ -52,6 +52,15 @@ angular.module('kg-App').service('adminService', function ($http) {
         })
       };
 
+      this.getAllSessions = function () {
+          console.log("hit");
+        return $http.get('/get-all-sessions')
+            .then(function (response) {
+                console.log(response.data);
+                return response;
+            });
+    };
+
     this.adminPermission = (secret_key) => {
         console.log(secret_key);
         return $http({

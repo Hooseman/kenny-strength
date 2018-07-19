@@ -74,12 +74,21 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
         }
       });
   };
+   // ----------------------------------------------------------------
+
+  //  Gets all the sessions related to the entire gym
+
+  adminService.getAllSessions().then(function (response) {
+    console.log(response);
+    response.data.forEach(e => e.next_class = e.next_class.substring(0, 10));
+    $scope.allSessions = response.data;
+  });
 
   // ----------------------------------------------------------------
 
   // -------------------------------------------------------------------------------
 
-  // Lists all user sessions and creates the next session window
+  // Lists all user sessions and populates into unpaid or paid
   var currentIndex = 0;
   $scope.unpaid = 0;
   $scope.paid = 0;
@@ -135,7 +144,7 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
 
   getSessions();
 
-  // -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 
   // sets the sessions to zero
 
@@ -172,7 +181,7 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
 
   // ----------------------------------------------------------------
 
-
+  // confirms a payment
 
   $scope.adminPayment = function (id) {
     if (currentIndex <= 0) {
@@ -202,6 +211,7 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
 
   // ----------------------------------------------------------------
 
+  // deletes a session
   $scope.cancelAdminSessions = (id) => {
     if (currentIndex <= 0) {
       swal({
@@ -233,5 +243,28 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
   };
 
   // ----------------------------------------------------------------
+  // Jquery
+
+  $(() => {
+    $('.admin-tab-buisness').on('click', () => {
+      $('.admin-tab-account').css({
+        "background": 'grey'
+      });
+      $('.admin-tab-buisness').css({
+        "background": 'darkgrey'
+      });
+    });
+
+    $('.admin-tab-account').on('click', () => {
+      $('.admin-tab-account').css({
+        "background": 'darkgrey'
+      });
+      $('.admin-tab-buisness').css({
+        "background": 'grey'
+      });
+    });
+
+
+  });
 
 });

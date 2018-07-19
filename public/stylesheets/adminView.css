@@ -26,6 +26,20 @@ div:focus {
     white-space: nowrap;
     box-shadow: 6px 4px 8px 0.3px grey;
     margin-right: 12px;
+    background-color: darkgray;
+}
+
+.admin-tab-buisness {
+    width: 256px;
+    height: 45px;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    white-space: nowrap;
+    box-shadow: 6px 4px 8px 0.3px grey;
+    margin-right: 12px;
+    background-color: grey;
 }
 
 #admin-tab-text {
@@ -180,7 +194,6 @@ div:focus {
     width: 86px;
     text-align: center;
     white-space: nowrap;
-    margin-right: 14px;
 }
 
 .admin-bottom-half-top-bar-list-info-text-one {
@@ -218,6 +231,17 @@ div:focus {
     font-size: 18px;
     position: relative;
     width: 75px;
+}
+
+.admin-bottom-half-top-bar-list-info-text-five {
+    height: 30px;
+    font-size: 18px;
+    position: relative;
+    margin-left: 20px;
+    width: 86px;
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 14px;
 }
 
 .admin-next-session-container {

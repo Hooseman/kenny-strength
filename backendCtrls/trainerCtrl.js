@@ -101,6 +101,11 @@ module.exports = {
     }).catch(err => console.log(err))
   },
   
+  getAllSessions: (req, res) => {
+    app.get('db').get_all_sessions().then(response => {
+      res.status(200).send(response)
+    }).catch(err => console.log(err))
+  },
 
   adminPermission: (req, res) => {
     app.get('db').get_secret_key([req.params.id]).then(response => {
