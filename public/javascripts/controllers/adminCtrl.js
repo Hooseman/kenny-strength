@@ -16,8 +16,6 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
   });
   // -------------------------------------------------------------------------------
 
-  // ----------------------------------------------------------------
-
   // Creates new trainers and creates super
 
   $scope.registerAdmin = (user) => {
@@ -52,15 +50,11 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
 
   // ----------------------------------------------------------------
 
-  // ----------------------------------------------------------------
-
   $scope.registerSuper = (user) => {
     adminService.registerSuper(user).then((response) => {
       console.log(response);
     })
   };
-
-  // ----------------------------------------------------------------
 
   // ----------------------------------------------------------------
 
@@ -74,17 +68,50 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
         }
       });
   };
-   // ----------------------------------------------------------------
-
-  //  Gets all the sessions related to the entire gym
-
-  adminService.getAllSessions().then(function (response) {
-    console.log(response);
-    response.data.forEach(e => e.next_class = e.next_class.substring(0, 10));
-    $scope.allSessions = response.data;
-  });
 
   // ----------------------------------------------------------------
+
+  //  Gets all the sessions related to the entire gym
+  $scope.totalUnpaid = 0;
+  $scope.totalPaid = 0;
+  $scope.totalHalfDue = 0;
+  $scope.totalHourDue = 0;
+  $scope.totalBuisness = 0;
+  $scope.totalUnpaidSesh = [];
+  $scope.totalPaidSesh = [];
+
+  const getTheSessions = () => {
+    adminService.getAllSessions().then((response) => {
+      console.log(response);
+      response.data.forEach(e => e.next_class = e.next_class.substring(0, 10));
+      $scope.allSessions = response.data;
+
+      for (var payment in $scope.allSessions) { // iterate through all payments
+        if ($scope.allSessions[payment].payment == 'Paid') { // if the person has paid
+          $scope.totalPaid++; // count a payment
+          $scope.totalPaidSesh.push($scope.trainerSesh[payment]);
+        } else { // if the person hasn't paid
+          $scope.totalUnpaid++; // count a non-payment
+          $scope.totalUnpaidSesh.push($scope.allSessions[payment]);
+        }
+      }
+
+      for (var next_session in $scope.totalUnpaidSesh) {
+        if ($scope.totalUnpaidSesh[next_session].next_session == '30_Minute') {
+          $scope.totalHalfDue = $scope.totalHalfDue + 25;
+        } else if ($scope.unpaidSesh[next_session].next_session == 'Hour_Session') {
+          $scope.totalHourDue = $scope.totalHourDue + 50;
+        }
+      }
+
+      $scope.totalBuisness = $scope.totalHalfDue + $scope.totalHourDue;
+
+    });
+  };
+
+
+  getTheSessions();
+
 
   // -------------------------------------------------------------------------------
 
@@ -144,7 +171,7 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
 
   getSessions();
 
-// -------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------
 
   // sets the sessions to zero
 
@@ -156,7 +183,14 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
     $scope.hourDue = 0;
     $scope.unpaidSesh = [];
     $scope.paidSesh = [];
-    // getSessions();
+
+    // ------Buisness Managment--------
+    $scope.totalUnpaid = 0;
+    $scope.totalPaid = 0;
+    $scope.totalHalfDue = 0;
+    $scope.totalHourDue = 0;
+    $scope.totalBuisness = 0;
+    $scope.totalUnpaidSesh = [];
   };
   // -------------------------------------------------------------------------------
 
@@ -203,6 +237,7 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
                 console.log("session was paid");
                 refreshSessions();
                 getSessions();
+                getTheSessions();
               };
             });
         });
@@ -227,6 +262,7 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
           adminService.cancelAdminSessions(id).then((response) => {})
           refreshSessions();
           getSessions();
+          getTheSessions();
           console.log("deleted");
         });
     };

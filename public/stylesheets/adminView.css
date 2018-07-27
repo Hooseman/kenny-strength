@@ -194,6 +194,18 @@ div:focus {
     width: 86px;
     text-align: center;
     white-space: nowrap;
+    margin-right: 11px;
+}
+
+.super-admin-bottom-half-top-bar-list-info-text {
+    height: 30px;
+    font-size: 18px;
+    position: relative;
+    margin-left: 20px;
+    width: 86px;
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 20px;
 }
 
 .admin-bottom-half-top-bar-list-info-text-one {
@@ -203,7 +215,17 @@ div:focus {
     width: 86px;
     text-align: center;
     white-space: nowrap;
-    margin-right: 11px;
+    margin-right: 6px;
+}
+
+.super-admin-bottom-half-top-bar-list-info-text-five {
+    height: 30px;
+    font-size: 18px;
+    position: relative;
+    width: 86px;
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 14px;
 }
 
 .admin-bottom-half-top-bar-list-info-text-two {
@@ -352,4 +374,14 @@ div:focus {
     text-align: center;
     position: relative;
     padding-top: 10px;
+}
+
+.admin-filter {
+    width: 100%;
+    background-color: grey;
+    z-index: 1;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+    padding-left: 23px;
 }

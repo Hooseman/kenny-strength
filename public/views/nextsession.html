@@ -25,7 +25,8 @@
                 <div class="date-picker-selection">
     
                     <md-input-container style="margin:0px;position:relative;right:15px;font-size:15px">
-                        <md-datepicker ng-model="user.next_class" ng-model="myDate" md-placeholder="Pick a date" md-date-filter="onlyWeekdaysPredicate" date:"MM/dd/yyyy 'at' h:mma" md-open-on-focus></md-datepicker>
+                        <md-datepicker ng-model="user.next_class" ng-model="myDate" md-placeholder="Pick a date" md-min-date= "myDate"
+                        md-date-filter="onlyWeekdaysPredicate" date:"MM/dd/yyyy 'at' h:mma" md-open-on-focus></md-datepicker>
                     </md-input-container>
                     
                 </div>
