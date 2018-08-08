@@ -69,8 +69,8 @@
                         <div>{{u.next_class}}</div>
                         <div>{{u.next_time}}</div>
                         <div>{{u.payment}}</div>
-                        <div style="display: flex; justify-content: center; margin-top: 20px">
-                            <div style="margin-right: 32px">
+                        <div class="admin-info-text">
+                            <div ng-click="showUserInfo();getUserInfo(u.user_id)" style="margin-right: 32px">
                                 <svg style="width: 50px;height: 50px;" xmlns="http://www.w3.org/2000/svg" fill="#4B74FF" width="24" height="24" viewBox="0 0 24 24">
                                     <path d="M0 0h24v24H0z" fill="none" />
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
@@ -97,6 +97,38 @@
                 <button ng-click="showUnpaidList();hideLogoutOne()" style="font-size: 30px; color: white" type="button">Go back</button>
             </div>
         </div>
+
+        <div class="admin-user-info-box-container">
+            <div class="admin-user-info" ng-if="showInfo">
+                <div class="admin-user-info-text">
+                    {{infoUsername}} {{infoLastname}}
+                    <br> {{infoEmail}}
+                    <br> {{infoPhone}}
+                    <br>
+                    <div class="address">
+                        <div>{{infoAddress}} {{infoCity}} {{infoZip}}</div>
+                    </div>
+                </div>
+                <div class="admin-user-info-text-two">
+                    <div>{{infoInfo}}</div>
+                    <div class="exitInfo">
+                        <svg ng-click="showUserInfo()" style="width: 50px;height: 50px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24">
+                            <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+                            />
+                            <path d="M0 0h24v24H0z" fill="none" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="showUserOtherInfo">
+                    <svg style="width: 50px;height: 50px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 12l-4-4h8l-4 4z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
 
         <div style="display: flex" ng-if="hideLogout">
             <div class="admin-paid-session-container">

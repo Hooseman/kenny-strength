@@ -72,6 +72,16 @@ angular.module('kg-App').service('adminService', function ($http) {
         });
     };
 
+    this.getUserInfo = (user_id) => {
+        console.log(user_id);
+        return $http({
+            method: "GET",
+            url: '/get-user-info/' + user_id,
+        }).then((response) => {
+            return response;
+        });
+    };
+
     this.logout = function () {
         return $http.get('/logout')
             .then(function (response) {

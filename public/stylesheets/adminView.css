@@ -275,7 +275,6 @@ div:focus {
 .admin-logout-button {
     text-align: center;
     position: relative;
-    top: 14px;
 }
 
 #admin-top-half-logout-button-text {
@@ -384,4 +383,56 @@ div:focus {
     font-size: 20px;
     color: white;
     padding-left: 23px;
+}
+
+.admin-user-info-box-container {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.admin-user-info {
+    width: 403px;
+    height: 253px;
+    position: absolute;
+    background-color: red;
+    color: white;
+    font-size: 25px;
+}
+
+.admin-user-info-text {
+    text-align: center;
+    margin-top: 37px;
+    width: 403px;
+}
+
+.admin-user-info-text-two {
+    text-align: center;
+    margin-top: 37px;
+    display: none;
+    height: 145px;
+}
+
+.showUserOtherInfo {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.address {
+    width: 404px;
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.admin-info-text {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px
+}
+
+.exitInfo {
+    margin-top: 111px;
 }

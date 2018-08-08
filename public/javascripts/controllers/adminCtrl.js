@@ -99,7 +99,7 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
       for (var next_session in $scope.totalUnpaidSesh) {
         if ($scope.totalUnpaidSesh[next_session].next_session == '30_Minute') {
           $scope.totalHalfDue = $scope.totalHalfDue + 25;
-        } else if ($scope.unpaidSesh[next_session].next_session == 'Hour_Session') {
+        } else if ($scope.totalUnpaidSesh[next_session].next_session == 'Hour_Session') {
           $scope.totalHourDue = $scope.totalHourDue + 50;
         }
       }
@@ -204,13 +204,26 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
     $scope.hideLogout = !$scope.hideLogout;
   };
 
-
   // ----------------------------------------------------------------
 
   $scope.clientInfo = false;
   $scope.clickForInfo = () => {
     $scope.clientInfo = !$scope.clientInfo;
     // console.log($scope.clientInfo);
+  };
+
+  // ----------------------------------------------------------------
+
+  $scope.showInfo = false;
+  $scope.showUserInfo = () => {
+    $scope.showInfo = !$scope.showInfo;
+  };
+
+  // ----------------------------------------------------------------
+
+  $scope.hideUserInfo = () => {
+    $scope.showInfo = !$scope.showInfo;
+    $scope.info = [];
   };
 
   // ----------------------------------------------------------------
@@ -270,6 +283,26 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
 
   // ----------------------------------------------------------------
 
+  // $scope.info = [];
+
+  $scope.getUserInfo = (user_id) => {
+    console.log(user_id);
+    adminService.getUserInfo(user_id).then((response) => {
+      $scope.info = response.data[0];
+      $scope.infoUsername = $scope.info.username;
+      $scope.infoLastname = $scope.info.lastname;
+      $scope.infoPhone = $scope.info.phone;
+      $scope.infoEmail = $scope.info.email;
+      $scope.infoAddress = $scope.info.clientaddress;
+      $scope.infoCity = $scope.info.city;
+      $scope.infoZip = $scope.info.zip;
+      $scope.infoInfo = $scope.info.info;
+      console.log($scope.info);
+    })
+  };
+
+  // ----------------------------------------------------------------
+
   // logout user
   $scope.logout = () => {
     adminService.logout().then((response) => {
@@ -298,6 +331,13 @@ angular.module('kg-App').controller('adminCtrl', function ($scope, adminService,
       $('.admin-tab-buisness').css({
         "background": 'grey'
       });
+    });
+
+    $('.admin-user-info-box-container').on('click', () => {
+      console.log("hit");
+      $('.admin-user-info-text').fadeOut(500);
+      $('.showUserOtherInfo').fadeOut(500);
+      $('.admin-user-info-text-two').delay(1000).fadeIn(500);
     });
 
 
